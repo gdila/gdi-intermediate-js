@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>girldevelopit-reveal.js - The GDI HTML Presentation Framework</title>
+		<title>JavaScript 201: Intermediate JavaScript</title>
 
 		<meta name="description" content="Girl Develop It framework for easily creating beautiful presentations using HTML in GDI theme. Forked from Hakim El Hattab's reveal.js">
 		<meta name="author" content="Girl Develop It">
@@ -51,310 +51,515 @@
         <!-- Opening -->
 				<section>
 					<img src="img/circle-gdi-logo.png" alt="GDI Logo" class="noborder"/>
-					<h1>GDI Reveal.js</h1>
-					<h2>Girl Develop It's Framework for HTML Presentations</h2>
+					<h1>JavaScript 201</h1>
+					<h2>Intermediate JavaScript</h2>
 					<p>
-						<small>Found at <a href ="https://github.com/girldevelopit/gdi-slides-template">Girl Develop It reveal.js fork</a>.</small>
-					</p>
-					<p>
-						<small>Original Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
-				</section>
-        <!-- Compatibility-->
-				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.</p>
-
-						<p>We highly recommend using Chrome, currently, however, the latest version of Safari, mobile Safari (iPad), Firefox and IE9 will work.
+						<small>View the slides at <a href ="https://github.com/gdila/intermediate-js">gdila.org/js201</a>.</small>
 					</p>
 				</section>
 
+				<!-- Wifi and links -->
 				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides and pinch your way to the overview.
-					</p>
+					<h3>JavaScript 201</h3>
+					<p>Wifi network: Opodz Members</p>
+					<p>Wifi password: opodz888</p>
+					<p>&nbsp;</p>
+					<h3>Class Slides</h3>
+					<p><a href="http://gdila.org/js201">gdila.org/js201</a></p>
 				</section>
 
-				<!-- Examples of basic html based slides -->
+				<!-- Sponsors -->
 				<section>
-					<h2>Marvelous Unordered List</h2>
+					<h1>Thank You</h1>
+					<p><img src="img/opodz-logo.jpg" height="210" width="585" alt=""></p>
+				</section>
+
+				<!-- GDI Rules -->
+				<section>
+					<h3>Welcome!</h3>
+					<p>Girl Develop It is here to provide affordable and accessible programs to learn software through mentorship and hands-on instruction.</p>
+					<p class="green">Some "rules"</p>
 					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
+						<li>Every question is important.</li>
+						<li>Help each other.</li>
+						<li>Have fun.</li>
+						<li>Learn and return.</li>
+					</ul>
+				</section>
+
+				<!-- Student introductions -->
+				<section>
+					<h3>Tell us about yourself</h3>
+					<ul>
+						<li>What's your name?</li>
+						<li>What do you hope to get out of the class?</li>
+						<li>Where would you most like to go on a vacation?</li>
+					</ul>
+				</section>
+
+				<!-- TA introductions -->
+				<section>
+					<h3>Ok, TA's your turn</h3>
+					<ul>
+						<li>What's your name?</li>
+						<li>Why do you like JavaScript?</li>
+						<li>Where would you most like to go on a vacation?</li>
+					</ul>
+				</section>
+
+				<!-- Teacher introduction -->
+				<section>
+					<h2>About Me</h2>
+					<ul>
+						<li>What's my name?</li>
+						<li>What's my favorite language?</li>
+						<li>What do I do?</li>
+						<li>Where would I most like to go on a vacation?</li>
+					</ul>
+				</section>
+
+				<!-- Slides link -->
+				<section>
+					<h3>Follow along!</h3>
+					<p>Access the slides and follow along here:</p>
+					<p><a href="http://gdila.org/js201">gdila.org/js201</a></p>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Let's get set up to write and test a little JavaScript. Make a folder called <code>gdi</code>. Inside, make an HTML page called <code>index.html</code> and a JavaScript file called <code>mycode.js</code>. Then set up your <code>index.html</code> file like this:</p>
+<pre><code class="javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta chartset="UTF-8"/&gt;
+	&lt;title&gt;Test Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p&gt;This is my awesome JavaScript code.&lt;/p&gt;
+
+	&lt;script src="mycode.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+				</section>
+
+				<!-- Variables & Scope -->
+				<section>
+					<h3>Variables</h3>
+					<p>A variable is a place to store values</p>
+					<p>Review:</p>
+					<ul>
+						<li>Declaring variables</li>
+						<li>Initializing variables</li>
+						<li>What variables can contain</li>
+						<li>Naming rules for variables</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
+					<h3>Scope</h3>
+					<p>The scope of a variable is how long the computer will remember it.</p>
 				</section>
 
-                <section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-                    <p>P.S. This won't work when running the slides locally unless you run reveal.js runs from a local web server.</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
-
-				<!-- Examples of code slides-->
 				<section>
-					  <h2>But wait! We teach code</h2>
-					  <p>For HTML -- Surround your code pre, then code class "xml".</p>
-<pre><code class="xml">&lt;ul class="demo"&gt;
-  &lt;li&gt;No order here&lt;/li&gt;
-  &lt;li&gt;Or here&lt;/li&gt;
-  &lt;li&gt;Or here&lt;/li&gt;
-  &lt;li&gt;Or here&lt;/li&gt;
-&lt;/ul&gt;
+					<h3>Local Scope</h3>
+<pre><code class ="javascript">var func = function() {
+	var local = true;
+	console.log(local);
+};
+
+console.log(local);</code></pre>
+				</section>
+
+				<section>
+					<h3>Global Scope</h3>
+<pre><code class ="javascript">var global = "I'm available everywhere!";
+
+var func = function() {
+	var local = "I'm available inside this function.";
+	console.log(local, global);
+};
+
+console.log(global);</code></pre>
+				</section>
+
+				<section>
+					<h3>Sneaky global scope</h3>
+					<p>Be careful to properly declare and initialize your variables to avoid unexpected global scope.</p>
+<pre><code class="javascript">var global = "I'm available everywhere.";
+
+var func = function() {
+	local = "I'm available everywhere, too!";
+};
+
+console.log(local);</code></pre>
+				</section>
+
+				<section>
+					<h3>Precedence</h3>
+<pre><code class="javascript">var g = "global";
+
+function go() {
+	var l = "local";
+	var g = "in here!";
+	console.log(g + " inside go");
+}
+
+go();
+alert(g + " outside go");</code></pre>
+				</section>
+
+				<section>
+					<h3><code>this</code></h3>
+					<p>Add more info about this</p>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<p>Any questions about variables or <code>this</code>?</p>
+				</section>
+
+				<!-- Arrays -->
+				<section>
+					<h3>Arrays</h3>
+<pre><code class="javascript">var coolClasses = ['HTML 101', 'HTML 201', 'JS 101', 'JS 201'];</code></pre>
+					<ul>
+						<li class="fragment">How long is the array?</li>
+						<li class="fragment">What is the index of <strong>JS 101</strong>?</code></li>
+						<li class="fragment">What is at the 0th index?</li>
+						<li class="fragment">How do we find the length of an array?</li>
+						<li class="fragment">When would we use an array?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Assignment and expanding arrays</h3>
+<pre><code class="javascript">var classes = [];
+
+classes[0] = 'HTML 101';
+classes[1] = 'HTML 201';
+
+classes.push('JS 101');
 </code></pre>
 				</section>
 
 				<section>
-					  <h2>But wait! We teach code</h2>
-					  <p>We can also make code editable</p>
-<pre><code contenteditable class="xml">&lt;ul class="demo"&gt;
-  &lt;li&gt;No order here&lt;/li&gt;
-  &lt;li&gt;Or here&lt;/li&gt;
-  &lt;li&gt;Or here&lt;/li&gt;
-  &lt;li&gt;Or here&lt;/li&gt;
-&lt;/ul&gt;
+					<h3>Accessing items</h3>
+<pre><code class="javascript">var classes = ['HTML 101', 'HTML 201', 'JS 101', 'JS 201'];
+
+var firstClass = classes[0];
+var lastClass = classes[3];</code></pre>
+				</section>
+
+				<section>
+					<h3>Removing items</h3>
+					<p>The <code>pop()</code> method removes the last item from the array and returns it</p>
+<pre><code class="javascript">var classes = ['HTML 101', 'HTML 201', 'JS 101', 'JS 201'];
+
+console.log(classes);
+
+var removed = classes.pop();
+
+console.log(classes);
+console.log(removed);</code></pre>
+				</section>
+
+				<section>
+					<h3>Array review</h3>
+<pre><code class="javascript">var classes = ['HTML 101', 'HTML 201', 'JS 101', 'JS 201'];
+
+var i = 0;
+
+console.log(classes[i]); // What will this display?
+
+console.log(classes[1]; // What will this display?
+
+console.log(classes.pop()); // What will this display?
+
+console.log(classes.length); // what will this display?
 </code></pre>
 				</section>
 
-
 				<section>
-					  <h2>But wait! We teach code</h2>
-					  <p>CSS</p>
-<pre><code contenteditable class ="css">body{
-  background-color: #ffffff;
+					<h3>Iterating over arrays</h3>
+<pre><code class="javascript">var classes = ['HTML 101', 'HTML 201', 'JS 101', 'JS 201'];
+
+for(var i = 0; i &lt; classes.length; i++) {
+	console.log(i); // What will this display?
 }
 </code></pre>
 				</section>
 
 				<section>
-					  <h2>But wait! We teach code</h2>
-					  <p>Javascript</p>
-<pre><code contenteditable class ="javascript">function helloWorld(){
-  var name = 'GDI';
-  alert("Hi, " + name)
+					<h3>Let's Develop It!</h3>
+					<p>Starting with this array:</p>
+<pre><code class="javascript">var noisesArray = ["quack", "sneeze", "boom"];</code></pre>
+					<p>Output "<code>quack! sneeze! boom!</code>" to the console.</p>
+				</section>
+
+				<section>
+					<h3>Array <code>map()</code></h3>
+				</section>
+
+				<section>
+					<h3>Array <code>filter()</code></h3>
+				</section>
+
+				<!-- Objects -->
+				<section>
+					<h3>Objects Review</h3>
+<pre><code class="javascript">var ollieTheCat = {
+	furColor: 'gray',
+	age: 1,
+	personality: 'wild',
+	likes: ['catnip', 'food', 'naps', 'cuddles', 'attention'],
+	adopted: {
+		month: 'february',
+		day: '11',
+		year: '2015'
+	}
+};</code></pre>
+					<ul>
+						<li class="fragment">How many keys are in the object?</li>
+						<li class="fragment">What are the key names?</li>
+						<li class="fragment">What are the values?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Creating objects</h3>
+					<p>Review 101</p>
+					<p>Also show other ways to create an object</p>
+				</section>
+
+				<section>
+					<h3>Object Literals</h3>
+<pre><code class="javascript">var ollieTheCat = {
+	age: 1,
+	furColor: 'gray'
+};</code></pre>
+				</section>
+
+				<section>
+					<h3>Assigning properties</h3>
+<pre><code class="javascript">var ollieTheCat = {
+	furColor: 'gray'
+};</code></pre>
+					<p>or</p>
+<pre><code class="javascript">var ollieTheCat = {};
+ollieTheCat.furColor = 'gray';</code></pre>
+					<p>or</p>
+<pre><code class="javascript">varOllieTheCat = {};
+ollieTheCat['furColor'] = 'gray';</code></pre>
+				</section>
+
+				<section>
+					<h3>Accessing properties</h3>
+					<p>Given an object like this:</p>
+<pre><code class="javascript">var ollieTheCat = {
+	furColor: 'gray'
+};</code></pre>
+					<p>We can access properties with dot notation:</p>
+<pre><code class="javascript">var furVariable = ollieTheCat.furColor;</code></pre>
+					<p>Or we can use bracket notation:</p>
+<pre><code class="javascript">var furVariable = ollieTheCat['furColor'];</code></pre>
+				</section>
+
+				<section>
+					<h3>Changing properties</h3>
+					<p>We can also update the values of properties:</p>
+<pre><code class="javascript">var ollieTheCat = {
+	furColor: 'gray'
+};
+
+ollieTheCat.furColor = 'hot pink';
+
+console.log(ollieTheCat.furColor);</code></pre>
+				</section>
+
+				<section>
+					<h3>Variables</h3>
+					<p>We can also use variables to store references to property names</p>
+<pre><code class="javascript">var ollieTheCat = {
+	furColor: 'gray'
+};
+
+var keyVariable = 'furColor';
+
+console.log(ollieTheCat[keyVariable]);</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Create an animal object, and define these properties on it:</p>
+					<ul>
+						<li>"username" (a string)</li>
+						<li>"tagline" (a string)</li>
+						<li>"noises" (an array of strings)</li>
+						<li>"3 fav foods" (an array of strings)</li>
+					</ul>
+					<p>For each property, decide whether its best to use dot notation or bracket notation.</p>
+				</section>
+
+				<section>
+					<h3>Arrays of Objects</h3>
+<pre><code class="javascript">var myCats = [
+	{ name: 'Ollie', age: 1, furColor: 'gray' },
+	{ name: 'Mabel', age: 6, furColor: 'gray' }
+];</code></pre>
+					<p>What would be the result?</p>
+<pre><code class="javascript">myCats[0].name
+myCats[1]furColor
+myCats[1]["Fur Color"]</code></pre>
+				</section>
+
+				<section>
+					<h3>Iterating Objects</h3>
+<pre><code class="javascript">var zoo = {
+	birds: 3,
+	bears: 5,
+	cats: 12
+};
+
+for(var key in zoo) {
+	console.log(zoo[key] + ' ' + key);
+}</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Create a variable called <code>animals</code> and set it equal to an empty array. Using any method you prefer, add your animal from the last object exercise to the animals array.</p>
+					<p>Create a variable called <code>quackers</code> and assign it to this example object:</p>
+<pre><code class="javascript">{ username: 'DaffyDuck', tagline: 'Yippeee!', noises: ['quack', 'honk', 'sneeze', 'growl'] }</code></pre>
+					<p>Add quackers to the animals array using a different method than before. Inspect your animals array to ensure you have two objects inside.</p>
+					<p>Create two more animal objects and add them to your animals array. They should have these properties and your choice of values: username (with a string value) tagline (with a string value) noises (with an array of values) Check the length property of your array. It should give you 4.</p>
+				</section>
+
+				<section>
+					<h3>Nested Objects</h3>
+					<img src="img/nesting.png" height="359" width="705" alt="">
+<pre><code class="javascript">var doll = {
+	size: 'large',
+	innerDoll: { size: 'medium'}
+};
+
+doll.innerDoll.innerDoll = {size: 'small'};
+
+console.log(doll);</code></pre>
+				</section>
+
+				<section>
+					<h2>Let's Develop It!</h2>
+					<p>Start with your property of animals from the previous exercise.</p>
+					<p>Add an "outfit" property to each animal, which describes different parts of their outfit using different properties, for example, <code>shirt: "blue"</code>.</p>
+					<p>Log out the outfit on each animal to make sure it worked.</p>
+				</section>
+
+				<section>
+					<h3>Built-in Objects</h3>
+				</section>
+
+				<section>
+					<h3>Global Objects</h3>
+				</section>
+
+				<!-- Functions -->
+				<section>
+					<h3>Functions</h3>
+<pre><code class="javascript">function add(a, b) {
+	return a + b;
+};
+
+add(5, 4);</code></pre>
+					<p>Review</p>
+					<ul>
+						<li class="fragment">Declaring and defining</li>
+						<li class="fragment">Arguments or parameters</li>
+						<li class="fragment">Function name</li>
+						<li class="fragment">Function body</li>
+						<li class="fragment">Invocation</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Function Declarations vs Function Expressions</h3>
+					<p>So far, we've only worked with function declarations, like this:</p>
+<pre><code class="javascript">function nameImprover(name, adj) {
+	return 'Admiral ' + name + ' Mc' + adj + 'pants';
 }
-</code></pre>
-				</section>
 
-				<section>
-					  <h2>But wait! We teach code</h2>
-					  <p>PHP</p>
-<pre><code contenteditable class ="php">function helloWorld(){
-  $name = 'GDI';
-  echo "Hi, " . $name;
+nameImprover('Natalie', 'Sparkly');</code></pre>
+					<p>But we can also write function expressions:</p>
+<pre><code class="javascript">var nameImprover = function(name, adj) {
+	return 'Admiral ' + name + ' Mc' + adj + 'pants';
 }
+
+nameImprover('Natalie', 'Sparkly');</code></pre>
+</code></pre>
+					<aside class="notes">https://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/</aside>
+				</section>
+
+				<section>
+					<h3>Returning values</h3>
+<pre><code class="javascript">var nameImprover = function(name, adj) {
+	return 'Admiral ' + name + ' Mc' + adj + 'pants';
+};</code></pre>
+<pre><code class="javascript">var nameLogger = function(name, adj) {
+	var newName = 'Admiral ' + name + ' Mc' + adj + 'pants';
+	console.log(newName);
+};</code></pre>
+				</section>
+
+				<section>
+					<h3>Function Arguments</h3>
+					<p>Inside a function, we can use the <code>arguments</code> keyword to fetch an array of all the arguments passed to a function.</p>
+<pre><code class="javascript">var addTwo = function(a, b) {
+	console.log(arguments); // logs [3,10]
+	return a + b;
+};
+
+addTwo(3, 10);</code></pre>
+				</section>
+
+				<section>
+					<h3><code>arguments</code></h3>
+<pre><code class="javascript">var addMany = function() {
+	console.log(arguments);
+	var sum = 0;
+	for (var i=0; i &lt; arguments.length; i++) {
+		sum += i;
+	}
+	return sum;
+};
+
+addMany(3, 10, 57, 24);
+addMany(3, 10, 57, 24, 200, 300);</code></pre>
+				</section>
+
+				<section>
+					<h3>Default values for arguments</h3>
+<pre><code class="javascript">var nameLogger = function(name, adj) {
+	if(adj === undefined) adj = "Fancy";
+	var newName = 'Admiral ' + name + ' Mc' + adj + 'pants';
+	console.log(newName);
+};
 </code></pre>
 				</section>
 
 				<section>
-					  <h2>But wait! We teach code</h2>
-<p>Ruby</p><pre><code contenteditable class ="ruby">def hello_world
-  @name = 'GDI'
-  puts "Hi, #{@name}"
-end
-</code></pre>
-				</section>
-
-         <section>
- 					  <h2>But wait! We teach code</h2>
- 					  <p>Python</p>
-<pre><code contenteditable class ="python">def hello_world():
-  name = "GDI"
-  print 'Hi, ' + name
-  return
-</code></pre>
- 				</section>
-
- 				 <section>
- 					  <h2>But wait! We teach code</h2>
- 					  <p>Java</p>
-<pre><code contenteditable class ="java">public void helloWorld(){
-  String name = "GDI";
-  System.out.println("Hi," + name)
-}
-</code></pre>
- 				</section>
-
-
-        <!-- Elements entering one at a time-->
-        <section>
-					<section>
-						<h2>Fragmented Views</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<ol>
-							<li class="fragment"><code>any type</code></li>
-							<li class="fragment"><em>of view</em></li>
-							<li class="fragment"><strong>fragments</strong></li>
-						</ol>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's a few styles of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-green">highlight-green</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
-				</section>
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#/14/1">down</a>.
-						</p>
-						<a href="#/14/1" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
-						<a href="#/14/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow"></a>
-						<a href="#/14" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<a href="#/14/3" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow"></a>
-						<a href="#/14/1" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/14" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview. Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
+					<h3>Let's Develop It!</h3>
+					<p>Write a <code>getAnimalOutfit</code> function that takes a single animal object as an argument and returns a description of the animal's outfit, like "a red shirt with blue pants and white shoes".</p>
 				</section>
 
 				<section>
-					<h2>rvl.io</h2>
-					<p>
-						You know, we are nerds after all and will probably get a kick out of all of this HTML. BUT, if you really don't like writing slides in HTML you can use the online editor <a href="http://www.rvl.io" target="_blank">rvl.io</a>.
-					</p>
-				</section>
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						Reveal.js comes with a few themes built in: <br>
-            <a href="?theme=gdicool#/themes">GDI Cool</a> -
-            <a href="?theme=gdilight#/themes">GDI Light</a> -
-            <a href="?theme=gdisunny#/themes">GDI Sunny</a> -
-            <a href="?theme=gdidefault#/themes">Default</a>
-					</p>
-					<p>
-						<small>
-							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
-						</small>
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						The nice thing about standards is that there are so many to choose from</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.
-					</blockquote>
-				</section>
-
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/1">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
-				</section>
-
-				<section>
-					<h1>THE END</h1>
-					<h3>BY Girl Develop It</h3>
-					<h4>Special thanks to: Hakim El Hattab / hakim.se</h4>
+					<h3>Closures</h3>
+					<p>Passing arguments as functions.</p>
+					<p>Returning arguments</p>
 				</section>
 
 			</div>
   		<footer>
         <div class="copyright">
-          Official class name here -- Chapter name here (if content modified from original) --
+          JavaScript 201 -- Los Angeles --
           <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /></a>
         </div>
       </footer>
