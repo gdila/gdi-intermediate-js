@@ -381,6 +381,19 @@ body {
 	max-height: none;
 }
 
+.reveal dl {
+	text-align: left;
+}
+
+.reveal dt {
+	font-weight: bold;
+}
+
+.reveal dd {
+	margin-bottom: 0.5em;
+	margin-left: 2em;
+}
+
 
 /*********************************************
  * CONTROLS

@@ -36,7 +36,7 @@
 		<!-- If use the PDF print sheet so students can print slides-->
 
 		<link rel="stylesheet" href="css/print/pdf.css" type="text/css" media="print">
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -48,7 +48,7 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-        <!-- Opening -->
+				<!-- Opening -->
 				<section>
 					<img src="img/circle-gdi-logo.png" alt="GDI Logo" class="noborder"/>
 					<h1>JavaScript 201</h1>
@@ -551,18 +551,259 @@ addMany(3, 10, 57, 24, 200, 300);</code></pre>
 				</section>
 
 				<section>
+					<h3><code>apply()</code></h3>
+					<p>Each JavaScript function has a method .apply(), which calls a function with a specified scope and arguments array.</p>
+<pre><code class="javascript">var myCallback = function(e) {
+	console.log(e);
+}
+
+var myEventListener = function() {
+	myCallback.apply(this, arguments);
+}
+
+myEventListener('Wow, look at this string get applied as an argument to myCallback!')</code></pre>
+				</section>
+
+				<section>
 					<h3>Closures</h3>
 					<p>Passing arguments as functions.</p>
 					<p>Returning arguments</p>
 				</section>
 
+				<section>
+					<h2>Questions?</h2>
+					<p>Questions about functions or closures before we move on?</p>
+				</section>
+
+				<!-- Advanced DOM -->
+				<section>
+					<h3>The DOM: Sample HTML</h3>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;Test Page&lt;/title&gt;
+	&lt;style&gt;
+		h1 {
+			color: red;
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;My Page&lt;/h1&gt;
+	&lt;p&gt;Hello World!&lt;/p&gt;
+	&lt;img src="http://placekitten.com/200/300" alt="cat"/&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+				</section>
+
+				<section>
+					<h3>The DOM: Sample Model</h3>
+					<img src="img/dom-tree.png" alt="Simple DOM Tree"/>
+				</section>
+
+				<section>
+					<h3>DOM</h3>
+					<ul>
+						<li>The DOM is a data structure called a <span class="blue">tree</span></li>
+						<li>Each point of data is called a <span class="blue">node</span></li>
+						<li>Each <span class="blue">node</span> can have a <span class="blue">parent</span>, <span class="blue">child</span>, and/or <span class="blue">sibling</span> nodes</li>
+						<li>The DOM is accessed by a global variable (object) called <code class="blue">document</code></li>
+						<li>We can also use dot notation to access methods and properties</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Identify</h3>
+					<img src="img/dom-tree.png" alt="Simple DOM Tree"/>
+					<ul>
+						<li>Parent/child</li>
+						<li>Siblings</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>How JavaScript sees the DOM</h3>
+<pre><code class="javascript">document = {
+	head: {
+		children: [ ... ] // contains all child nodes
+	},
+	body: {
+		children: [ ... ] // contains all child nodes
+		hasChildNodes: function() {
+			//returns true or false
+		}
+	},
+	getElementById: function(arg) {
+		//returns matching node list
+	}
+	...
+}</code></pre>
+					<p>Note: This is not complete! But gives an idea...</p>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>In the brower console, try these...</p>
+<pre><code class="javascript">document.body</code></pre>
+<pre><code class="javascript">document.body.children</code></pre>
+<pre><code class="javascript">document.querySelectorAll('p');</code></pre>
+					<p>&nbsp;</p>
+					<p>What other properties and methods do we know?</p>
+				</section>
+
+				<section>
+					<h3>Selecting an array of nodes</h3>
+					<p>By CSS selector:</p>
+<pre><code class="javascript">document.querySelectorAll('section h2');</code></pre>
+					<p>&nbsp;</p>
+					<p>By tag name:</p>
+<pre><code class="javascript">document.getElementsByTagName('div');</code></pre>
+					<p>&nbsp;</p>
+					<p>By class name:</p>
+<pre><code class="javascript">document.getElementsByClassName('upper');</code></pre>
+				</section>
+
+				<section>
+					<h3>Selecting a single node</h3>
+					<p>By ID:</p>
+<pre><code class="javascript">document.getElementById('kittenPic');</code></pre>
+					<p>&nbsp;</p>
+					<p>By CSS selector:</p>
+<pre><code class="javascript">document.querySelectorAll('section h2')[0];</code></pre>
+					<p>&nbsp;</p>
+					<p>By tag name:</p>
+<pre><code class="javascript">document.getElementsByTagName('div')[2];</code></pre>
+					<p>&nbsp;</p>
+					<p>By class name:</p>
+<pre><code class="javascript">document.getElementsByClassName('upper')[1];</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Pair up with a buddy</p>
+					<p>Open <code>gdila.org</code> in your browser, then open the console.</p>
+					<p>One person will select a couple different elements on the page, and the other person has to use document methods to select them. You'll know you've got the right one when you hover over it and it highlights on the page (I'll demonstrate).</p>
+					<p>Take turns.</p>
+				</section>
+
+				<section>
+					<h3>Creating a new node</h3>
+					<p>Three step-process:</p>
+					<ol>
+						<li>
+							Create and store in a variable
+<pre><code class="javascript">var myNewElement = document.createElement('div');</code></pre>
+						</li>
+						<li>
+							Edit the node
+<pre><code class="javascript">myNewElement.innerHTML = 'I am the html inside of a <em>brand new</em> div tag!';
+myNewElement.className = 'new';</code></pre>
+						</li>
+						<li>
+							Insert the node
+<pre><code class="javascript">document.body.appendChild(myNewElement);
+</code></pre>
+						</li>
+					</ol>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Open the browser console. Create a new image. Give it an <code>src</code> attribute. Append it to the page.</p>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<p>Any questions on selecting or creating DOM nodes?</p>
+				</section>
+
+				<section>
+					<h3>Events</h3>
+					<dl class="align-left">
+						<dt>Event</dt>
+						<dd>Something that happens</dd>
+						<dt>Callback</dt>
+						<dd>Function that executes after the event happens</dd>
+						<dt>Event Listener</dt>
+						<dd>A method that binds a callback to an event</dd>
+					</dl>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Add this button to your HTML page:</p>
+<pre><code class="javascript">&lt;button id="testButton"&gt;Click me!&lt;/button&gt;</code></pre>
+					<p>&nbsp;</p>
+					<p>Now add an event listener to the button that will log a message to the console when the button is clicked.</p>
+					<p><strong>Bonus:</strong> If you finish early, try updating the callback so it logs the number of times the button has been clicked to the console.</p>
+				</section>
+
+				<section>
+					<h3>Event Listeners</h3>
+					<p>So far, we have only used specific event handler methods as event listeners.</p>
+					<p>These specific event handlers have a limitation: you can only assign one callback per event.</p>
+<pre><code class="javascript">var element = document.getElementById('example');
+element.onclick = function() { console.log('did stuff #1'); };
+element.onclick = function() { console.log('did stuff #2'); };</code></pre>
+					<p>If you click the button, you'll see that only <code>did stuff #2</code> is logged to the console. We're assigning methods to an object, and the second one simply overwrites the first.</p>
+				</section>
+
+				<section>
+					<h3>The <code>addEventListener()</code> method</h3>
+					<p>If we want to get fancy (or just build more stable and flexible code), we can use the <code>addEventListener()</code> method instead.</p>
+<pre><code class="javascript">element.addEventListener(event, callback);</code></pre>
+				</section>
+
+				<section>
+					<h3><code>addEventListener()</code> with an anonymous function</h3>
+<pre><code class="javascript">var myButton = document.getElementById('testButton');
+
+myButton.addEventListener('click', function() {
+	console.log('button was clicked!');
+});</code></pre>
+					<p>&nbsp;</p>
+					<p>This works, but we can't remove this callback later on because we don't have a way to call it - it's anonymous and has no name.</p>
+				</section>
+
+				<section>
+					<h3><code>addEventListener()</code> with a named function</h3>
+<pre><code class="javascript">var myButton = document.getElementById('testButton');
+
+//store and define the function
+var myCallback = function() {
+	console.log('button clicked!');
+};
+
+myButton.addEventListener('click', myCallback);</code></pre>
+					<p>&nbsp;</p>
+					<p>Now, we can remove that event listener later on:</p>
+<pre><code class="javascript">myButton.removeEventListener('click', myCallback)
+</code></pre>
+				</section>
+
+				<section>
+					<h3>What about arguments?</h3>
+					<p>Arguments get passed to the callback:</p>
+<pre><code class="javascript">var myLink = document.getElementById('testLink');
+
+//store and define the function
+var myCallback = function(e) {
+	e.preventDefault();
+	console.log('Not going there!');
+};
+
+//no argument needed for binding the event
+myLink.addEventListener('click', myCallback);</code></pre>
+				</section>
+
 			</div>
-  		<footer>
-        <div class="copyright">
-          JavaScript 201 -- Los Angeles --
-          <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /></a>
-        </div>
-      </footer>
+			<footer>
+				<div class="copyright">
+					JavaScript 201 -- Los Angeles --
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /></a>
+				</div>
+			</footer>
 		</div>
 
 
@@ -573,7 +814,7 @@ addMany(3, 10, 57, 24, 200, 300);</code></pre>
 
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
-            Reveal.initialize({
+						Reveal.initialize({
 				controls: true,
 				progress: true,
 				history: true,
@@ -589,7 +830,7 @@ addMany(3, 10, 57, 24, 200, 300);</code></pre>
 					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
 					{ src: 'plugin/notes/notes.js', async: true },
-                    { src: 'plugin/accessibility-helper/js/accessibility-helper.js', async: true, condition: function() { return !!document.body.classList; } }
+										{ src: 'plugin/accessibility-helper/js/accessibility-helper.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
 
