@@ -297,6 +297,10 @@ for(var i = 0; i &lt; classes.length; i++) {
 				</section>
 
 				<section>
+					<h3>Array <code>join()</code></h3>
+				</section>
+
+				<section>
 					<h3>Array <code>map()</code></h3>
 				</section>
 
@@ -1049,6 +1053,272 @@ var book = new Book({
 		"212 732-1234",
 		"646 123-4567" ]
 }</code></pre>
+				</section>
+
+				<section>
+					<h3>Moving JSON to the DOM</h3>
+					<p>Start by storing JSON in a variable:</p>
+<pre><code class="javascript">var myProfile = {
+	"firstName": "Natalie",
+	"lastName": "MacLees",
+	"cats": ["Mabel", "Ollie"]};</code></pre>
+					<p>Then, you can access the data stored inside and use it while creating new nodes:</p>
+<pre><code class="javascript">var p = document.createElement('p');
+p.innerHTML = 'My name is ' + myProfile.firstName + ' ' + myProfile.lastName + '. ';
+p.innerHTML += 'My cats are ' + myProfile.cats.join(', ') + '.';</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Video player example</p>
+				</section>
+
+				<section>
+					<h3>Ajax</h3>
+					<p>Asynchronous JavaScript And "XML"</p>
+					<img src="img/ajax.png" height="400" width="600" alt="">
+				</section>
+
+				<section>
+					<h3>Ajax in the wild</h3>
+					<img src="img/wild-ajax.png" height="880" width="1136" alt="">
+				</section>
+
+				<section>
+					<h3>The <code>XMLHttpRequest</code> object</h3>
+					<ul>
+						<li>A native JavaScript object that can communicate asynchronously between the client and the server.</li>
+						<li>To use it, we create a new instance of the object:
+<pre><code class="javascript">var request = new XMLHttpRequest();</code></pre>
+						</li>
+						<li>...and then use the properties and methods of that object to make an ajax call</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Getting ready to communicate</h3>
+					<p>Now that we've created an instance of the XHR object, it needs to be prepped for communition. That requires three things:</p>
+					<ol>
+						<li>The <code>readystatechange</code> event handler</li>
+						<li>The <code>open()</code> method</li>
+						<li>The <code>send()</code> method</li>
+					</ol>
+				</section>
+
+				<section>
+					<h3><code>readystatechange</code></h3>
+					<ul>
+						<li>During an ajax operation, the server sends updates to the client about the current status of the communication by updating a property of the XHR object called <code>readyState</code>.</li>
+						<li class="fragment">Each time the <code>readyState</code> property is changed, the <code>readystatechange</code> event is fired.</li>
+						<li class="fragment">If you add an event listener function to the <code>readystatechange</code> event, your function will execute each time the server pings the client with an update.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>An <code>onreadystatechange</code> example</h3>
+<pre><code class="javascript">var request = new XMLHttpRequest();
+
+if(request) {
+	request.addEventListener('readystatechange', function(){
+	console.log(request.readyState);
+});</code></pre>
+				</section>
+
+				<section>
+					<h3>The <code>open()</code> method</h3>
+					<div class="left-align">
+						<p>The <code>open()</code> method takes two required arguments:</p>
+						<ol>
+							<li>The type of request (string)</li>
+							<li>The location of the file on the server (string)</li>
+						</ol>
+						<p>&nbsp;</p>
+						<p>And an additional optional argument:</p>
+						<ol>
+							<li>Whether or not the request should be asynchronous (Boolean)</li>
+						</ol>
+					</div>
+				</section>
+
+				<section>
+					<h3>Request types: <code>GET</code> and <code>PUT</code></h3>
+					<dl>
+						<dt><code>GET</code></dt>
+						<dd>
+							<ul>
+								<li>Most commonly used</li>
+								<li>When you just want to retrieve a file from the server and you don't need to send any data</li>
+								<li>Also capable of sending a small amount of data as a query string</li>
+							</ul>
+						</dd>
+						<dt><code>PUT</code></dt>
+						<dd>
+							<ul>
+								<li>Useful for sending a lot of data to the server</li>
+							</ul>
+						</dd>
+					</dl>
+					<p><small>Just FYI, there are some other request types too (<code>PUT</code>, <code>DELETE</code>, and <code>HEAD</code>, for example), but they're not a concern for ajax stuff.</small></p>
+				</section>
+
+				<section>
+					<h3>Location of the file</h3>
+					<ul>
+						<li>A string that contains either a relative, absolute, or full path to a file on the server</li>
+						<li>The file you are requesting must reside in the same domain as the JavaScript file that is making the request.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Asynchronous</h3>
+					<p>Indicates whether the request should occur asynchronously or not.</p>
+					<p>If <code>true</code>, the script will make the request and won't wait for the response from the server before moving on to the rest of the script.</p>
+					<p>If <code>false</code>, the browser will stop processing the script until the ajax request is completed.</p>
+					<p>&nbsp;</p>
+					<p>Use <code>true</code>!</p>
+				</section>
+
+				<section>
+					<h3>The <code>send()</code> method</h3>
+					<p>Once your request is prepped by the <code>open()</code> method, it's ready to be sent!</p>
+				</section>
+
+				<section>
+					<h3><code>send()</code> using <code>GET</code></h3>
+<pre><code class="javascript">var request = new XMLHttpRequest();
+
+if(request) {
+	request.addEventListener('readystatechange', function(){...});
+	request.open('GET', 'file.ext', true);
+	request.send();
+}</code></pre>
+				</section>
+
+				<section>
+					<h3><code>PUT</code>: The <code>setRequestHeader()</code> method</h3>
+					<p>Since we're sending data with the <code>PUT</code> type, we have an extra step. We need to use the <code>setRequestHeader</code> method of the XHR object to set the request headers.</p>
+					<p>Request headers are bits of metadata that describe the request so the server understands what to expect from the data received.</p>
+					<p><code>setRequestHeader()</code> takes two arguments:</p>
+					<ol>
+						<li>Name of the header (string)</li>
+						<li>Value of the header (string)</li>
+					</ol>
+				</section>
+
+				<section>
+					<h3><code>setRequestHeader()</code> example</h3>
+					<p>If you are sending data to the server, you need to set the value of the <code>Content-type</code> header to <code>application/x-www-form-urlencoded</code>, like this:</p>
+<pre><code class="javascript">request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');</code></pre>
+					<p>This tells the server to expect some data and for that data to be URL-encoded.</p>
+					<p><span class="blue">URL-encoded</span> means spaces become plus signs (+) and non-alphanumeric characters need to be encoded as <a href="http://www.degraeve.com/reference/urlencoding.php">hex values</a>.</span></p>
+<pre><code class="javascript">'name=Natalie+MacLees&message=JavaScript+is+awesome%21'</code></pre>
+				</section>
+
+				<section>
+					<h3><code>send()</code> using <code>PUT</code></h3>
+<pre><code class="javascript">var request = new XMLHttpRequest();
+
+if(request) {
+	request.addEventListener('readystatechange', function(){...});
+	request.open('POST', 'file.ext', true);
+	request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	request.send('name=Natalie+MacLees&message=JavaScript+is+awesome%21');</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Some kind of exercise</p>
+				</section>
+
+				<section>
+					<h3>Receiving a response</h3>
+					<p>Phew! Now we've got sending a request down - let's learn how to receive a response!</p>
+				</section>
+
+				<section>
+					<h3>The <code>readyState</code> property</h3>
+					<p>Indicates the current state of the Ajax request. Possible values:</p>
+					<ul>
+						<li><code>0</code> - Uninitialized. The open method hasn't been called yet.</li>
+						<li><code>1</code> - Loading. The open method has been called.</li>
+						<li><code>2</code> - Loaded. The send method has been called - the request has begun</li>
+						<li><code>3</code> - Interactive. The server is working on it</li>
+						<li><code>4</code> - Complete. The server sent a response.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3><code>readyState</code> property and the <code>readyStateChange</code> event</h3>
+					<p>In theory, the readyState property counts from 0 to 4 in order.</p>
+					<p>In practice, what happens is a bit unpredictable.</p>
+					<p>What we <em>can</em> count on is that if the value has reached <code>4</code>, the server has finished sending a response.</p>
+				</section>
+
+				<section>
+					<h3>Checking the <code>readyState</code></h3>
+<pre><code class="javascript">function doSomething() {
+	if (request.readyState == 4) {
+		//do something with the response here
+	}
+}</code></pre>
+					<p><code>doSomething()</code> gets called every time the value of the <code>readyState</code> property changes, but our <code>if</code> statement ensures nothing will happen unless the value is <code>4</code>.</p>
+				</section>
+
+				<section>
+					<h3>Status</h3>
+					<p>When the server sends back a response, it always includes response headers with metadata about the response.</p>
+					<p>These headers include a <span class="blue">status code</span> - a three digit number that is part of the HTTP protocol</p>
+					<p>Some examples:</p>
+					<ul>
+						<li><code>404</code> - not found</li>
+						<li><code>403</code> - forbidden</li>
+						<li><code>500</code> - internal server error</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>200 OK</h3>
+					<p>The most common status code is <code>200</code>, which means <code>OK</code>. It indicates the response was successfully sent.</p>
+					<p>The XHR object has a property called <code>status</code> where the status code is stored. We can check it to make sure we got a successful response:</p>
+<pre><code class="javascript">function doSomething() {
+	if (request.readyState == 4) {
+		if (request.status == 200) {
+			//response was successful, do something
+		}
+	}
+}</code></pre>
+				</section>
+
+				<section>
+					<h3>When things don't go as planned...</h3>
+					<p>We can also add an <code>else</code> statement to deal with situations where things don't go according to plan:</p>
+<pre><code class="javascript">function doSomething() {
+	if (request.readyState == 4) {
+		if (request.status == 200) {
+			//response was successful, do something
+		} else {
+			//something went wrong!
+		}
+	}
+}</code></pre>
+				</section>
+
+				<section>
+					<h3>The <code>responseText</code> property</h3>
+					<p>The <code>responseText</code> property of the XHR object contains the data sent from the server as a string.</p>
+<pre><code class="javascript">function doSomething() {
+	if (request.readyState == 4) {
+		if (request.status == 200) {
+			console.log(request.responseText);
+		}
+	}
+}</code></pre>
+				</section>
+
+				<section>
+					<h3>But we need JSON!</h3>
+					<p>The <code>responseText</code> property contains our data, but it's a string, and we need JSON. We just need to convert it to JSON like this:</p>
+<pre><code class="javascript">var jsonObj = JSON.parse(request.responseText);</code></pre>
 				</section>
 
 			</div>
