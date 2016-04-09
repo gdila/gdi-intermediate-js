@@ -1321,6 +1321,72 @@ if(request) {
 <pre><code class="javascript">var jsonObj = JSON.parse(request.responseText);</code></pre>
 				</section>
 
+				<section>
+					<h3>Putting it all together</h3>
+					<p>Let's step through fetching some information from the server with ajax and displaying it on our page.</p>
+				</section>
+
+				<section>
+					<h3>First, we need to create, prep, and send our request:</h3>
+<pre><code class="javascript">var request = new XMLHttpRequest();
+
+var displayResponse = function(request){
+	// we'll write some code here later
+};
+
+if (request) {
+	request.onreadystatechange = function(){
+		displayResponse(request);
+	};
+	request.open('GET', 'me.json', true);
+	request.send();
+}</code></pre>
+				</section>
+
+				<section>
+					<h3>Next, we'll handle the response</h3>
+<pre><code class="javascript">var displayResponse = function(request) {
+	if (request.readyState == 4) {
+		if (request.status == 200) {
+			var jsonObj = JSON.parse(request.responseText);
+
+			var p = document.createElement('p');
+			p.innerHTML = 'My name is ' + jsonObj.firstName + ' ' + jsonObj.lastName + ' and I live at ' + jsonObj.address.streetAddress + ' in ' + jsonObj.address.city + '. ';
+			p.innerHTML += 'My zip code is ' + jsonObj.address.postalCode + '.';
+
+			var displayBox = document.getElementById('resultsBox');
+
+			displayBox.appendChild(p);
+		}
+	}
+};</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Exercise that will require a local server.</p>
+				</section>
+
+				<section>
+					<h3>Ajax</h3>
+					<p>The <code>XMLHttpRequest</code> is the heart and soul of ajax. Its methods and properties drive the requests that make ajax feel so responsive.</p>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<p>Questions about JSON or Ajax before we wrap up?</p>
+				</section>
+
+				<section>
+					<h3>Survey</h3>
+					<p>Survey info and links</p>
+				</section>
+
+				<section>
+					<h3>Thank you!</h3>
+					<p>As you keep working with JavaScript, if you have questions or get stuck, post in our <a href="http://facebook.com/groups/gdila">Facebook group</a> and we'll help you out!.</p>
+				</section>
+
 			</div>
 			<footer>
 				<div class="copyright">

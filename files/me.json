@@ -1,0 +1,13 @@
+{
+	"firstName": "Jane",
+	"lastName": "Smith",
+	"address": {
+		"streetAddress": "425 2nd Street",
+		"city": "San Francisco",
+		"state": "CA",
+		"postalCode": 94107
+	},
+	"phoneNumbers": [
+		"212 732-1234",
+		"646 123-4567" ]
+}
