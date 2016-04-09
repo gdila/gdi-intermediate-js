@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GDI JavaScript 201 Exercise</title>
+	<link rel="stylesheet" href="exercises.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		// Powers show/hide buttons.
+		$( document ).ready(function() {
+			$("div.codebox").hide();
+		});
+		function showSolution(num) {
+			$("div#example" + num + "Code").toggle();
+		}
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<h1>Animal Collection</h1>
+		</div>
+		<div id="main">
+			<p>Start with the animal object you created in the last exercise.</p>
+			<ol>
+				<li>Create a variable called <code>animals</code> and set it equal to an empty array. Using any method you prefer, add your animal object to the <code>animals</code> array.</li>
+				<li>Create a variable called <code>quackers</code> and assign it to this object:
+<pre><code>{name: 'Daffy Duck', description: 'a silly duck', noises: ['quack', 'honk', 'sneeze', 'growl'] }</code></pre>
+				</li>
+				<li>Add quackers to the <code>animals</code> array using a different method than before.</li>
+				<li>Inspect your animals array to ensure you have two objects inside.</li>
+				<li>Create two more animal objects and add them to the <code>animals</code> array. They should have these properties and your choice of values: <code>name</code> (string), <code>description</code> (string), and <code>noises</code> (array of strings).</li>
+				<li>Check the length of your array and make sure it's 4.</li>
+				<li>Now iterate over your array to output a list of the animals' names.</li>
+			</ol>
+		</div>
+		<div id="footer">
+			<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+		</div>
+	</div>
+</body>
+</html>

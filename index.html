@@ -207,11 +207,11 @@ console.log(local);</code></pre>
 function go() {
 	var l = "local";
 	var g = "in here!";
-	console.log(g + " inside go");
+	console.log(g + " inside go()");
 }
 
 go();
-alert(g + " outside go");</code></pre>
+alert(g + " outside go()");</code></pre>
 				</section>
 
 				<section>
@@ -250,12 +250,41 @@ btn.onclick = function(){
 
 	console.log(text);
 };</code></pre>
+				</section>
 
+				<section>
+					<h3>But wait...what's the object here?</h3>
+<pre><code class="javascript">function trySomething(){
+	console.log(this);
+}
+
+trySomething();</code></pre>
+				</section>
+
+				<section>
+					<h3>The <code>window</code> object</h3>
+					<p>A <code>window</code> object is created in the browser as soon as the JavaScript interpreter starts.</p>
+					<p>All globally-scoped functions and variables are actually properties and methods of the <code>window()</code> object.</p>
+				</section>
+
+				<section>
+					<h3>The <code>window</code> object</h3>
+<pre><code class="javascript">var num = 7;
+var name = "Natalie";
+
+console.log(window.num);
+console.log(window.name);
+
+function sayHello() {
+	console.log("Hello there!");
+}
+
+window.sayHello();</code></pre>
 				</section>
 
 				<section>
 					<h2>Questions?</h2>
-					<p>Any questions about <code>this</code>?</p>
+					<p>Any questions about <code>this</code> or the <code>window</code> object?</p>
 				</section>
 
 				<!-- Arrays -->
@@ -337,13 +366,13 @@ for(var i = 0; i &lt; classes.length; i++) {
 				</section>
 
 				<section>
-					<h3>Array <code>join()</code></h3>
+					<h3>The <code>join()</code> method of arrays</h3>
 					<p>Converts an array to a string.</p>
 					<p>Takes a single argument - the string that should separate the individual items.</p>
 				</section>
 
 				<section>
-					<h3>Array <code>join()</code></h3>
+					<h3><code>array.join()</code></h3>
 <pre><code class="javascript">var classes = ['HTML 101', 'HTML 201', 'JS 101', 'JS 201'];
 
 var classes1 = classes.join();
@@ -360,11 +389,78 @@ var classes4 = classes.join('');</code></pre>
 				</section>
 
 				<section>
-					<h3>Array <code>filter()</code></h3>
+					<h3>The <code>filter()</code> method of arrays</h3>
+<pre><code class="javascript">var numbers = [12, 5, 8, 44, 53, 130, 44, 4];
+
+function isBigEnough(value) {
+  return value >= 10;
+}
+
+var bigNumbers = numbers.filter(isBigEnough);</code></pre>
+					<p>The <code>filter()</code> method creates a new array with all elements that pass the test implemented by the provided function.</p>
 				</section>
 
 				<section>
-					<h3>Array <code>map()</code></h3>
+					<h3><code>filter()</code></h3>
+					<p>The <code>filter()</code> method requires one argument - a callback function that returns a Boolean</p>
+					<p>If the function returns true, the item is added to the new array.</p>
+<pre><code class="javascript">var numbers = [12, 5, 8, 44, 53, 130, 44, 4];
+
+function isBigEnough(value) {
+  return value >= 10;
+}
+
+var bigNumbers = numbers.filter(isBigEnough);</code></pre>
+				<p>The <code>filter()</code> callback function can take up to three arguments. They are: <code>element</code>, <code>index</code>, and <code>array</code></p>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Given this array:</p>
+<pre><code class="javascript">var cats = [
+	{ name: "Maru", status: "hungry" },
+	{ name: "Hana", status: "playful" },
+	{ name: "Lil Bub", status: "sleepy" },
+	{ name: "Grumpy Cat", status: "hungry" }
+];</code></pre>
+					<p>Filter the array to create a new array of just the cats who are hungry.</p>
+				</section>
+
+				<section>
+					<h3>The <code>map()</code> method of arrays</h3>
+					<p>The <code>map()</code> method creates a new array with the results of calling a function on each item in the array.</p>
+				</section>
+
+				<section>
+					<h3><code>map()</code></h3>
+					<p>The <code>map()</code> method requires one argument - a callback function that takes an item from the current array and returns an item that will be included in the new array.</p>
+<pre><code class="javascript">var numbers = [57, 12, 13, 5, 143, 8, 17, 43];
+
+var numbersPlusFive = numbers.map(function(num){
+	return num + 5;
+});
+
+console.log(numbers);
+console.log(numbersPlusFive);</code></pre>
+					<p>The <code>map()</code> callback function can take up to three arguments. They are: <code>element</code>, <code>index</code>, and <code>array</code></p>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Given this array:</p>
+<pre><code class="javascript">var cats = [
+	{ name: "Maru", status: "hungry" },
+	{ name: "Hana", status: "playful" },
+	{ name: "Lil Bub", status: "sleepy" },
+	{ name: "Grumpy Cat", status: "hungry" }
+];</code></pre>
+					<p>Use the <code>map()</code> method to create a new array of strings representing the cats names. Like this:</p>
+<pre><code class="javascript">var catNames = ["Maru", "Hana", "Lil Bub", "Grumpy Cat"];</code></pre>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<p>Questions about <code>map()</code> before we move on?</p>
 				</section>
 
 				<!-- Objects -->
@@ -390,53 +486,59 @@ var classes4 = classes.join('');</code></pre>
 
 				<section>
 					<h3>Creating objects</h3>
-					<p>Review 101</p>
-					<p>Also show other ways to create an object</p>
+					<p>So far, we've learned how to create an object by doing this:</p>
+<pre><code class="javascript">var ollieTheCat = {};
+ollieTheCat.furColor = 'gray';
+ollieTheCat.age = 1;</code></pre>
+					<p>Or by doing this:</p>
+<pre><code class="javascript">var ollieTheCat = {
+	furColor: 'gray',
+	age: 1
+};</code></pre>
+					<p>These are called <span class="blue">object literals</span> - a pair of curly braces with 0 or more property/value pairs.</p>
 				</section>
 
 				<section>
-					<h3>Object Literals</h3>
-<pre><code class="javascript">var ollieTheCat = {
-	age: 1,
-	furColor: 'gray'
-};</code></pre>
+					<h3>The <code>new</code> keyword</h3>
+					<p>We can also create new objects by using the <code>new</code> keyword, like this:</p>
+<pre><code class="javascript">var ollieTheCat = new Object();
+ollieTheCat.furColor = 'gray';
+ollieTheCat.age = 1;</code></pre>
 				</section>
 
 				<section>
 					<h3>Assigning properties</h3>
+					<p>We can assign properties inside an object literal:</p>
 <pre><code class="javascript">var ollieTheCat = {
 	furColor: 'gray'
 };</code></pre>
-					<p>or</p>
+					<p>or by using dot notation:</p>
 <pre><code class="javascript">var ollieTheCat = {};
 ollieTheCat.furColor = 'gray';</code></pre>
-					<p>or</p>
+					<p>or by using bracket notation:</p>
 <pre><code class="javascript">varOllieTheCat = {};
 ollieTheCat['furColor'] = 'gray';</code></pre>
 				</section>
 
 				<section>
 					<h3>Accessing properties</h3>
-					<p>Given an object like this:</p>
-<pre><code class="javascript">var ollieTheCat = {
-	furColor: 'gray'
-};</code></pre>
 					<p>We can access properties with dot notation:</p>
 <pre><code class="javascript">var furVariable = ollieTheCat.furColor;</code></pre>
-					<p>Or we can use bracket notation:</p>
+					<p>...or we can use bracket notation:</p>
 <pre><code class="javascript">var furVariable = ollieTheCat['furColor'];</code></pre>
 				</section>
 
 				<section>
 					<h3>Changing properties</h3>
-					<p>We can also update the values of properties:</p>
+					<p>Given an object:</p>
 <pre><code class="javascript">var ollieTheCat = {
-	furColor: 'gray'
-};
-
-ollieTheCat.furColor = 'hot pink';
-
-console.log(ollieTheCat.furColor);</code></pre>
+	furColor: 'gray',
+	age: 1
+};</code></pre>
+					<p>We can change the value of a property with dot notation:</p>
+<pre><code class="javascript">ollieTheCat.furColor = 'hot pink';</code></pre>
+					<p>...or we can change the value with bracket notation:</p>
+<pre><code class="javascript">ollieTheCat['furColor'] = 'hot pink';</code></pre>
 				</section>
 
 				<section>
@@ -449,18 +551,18 @@ console.log(ollieTheCat.furColor);</code></pre>
 var keyVariable = 'furColor';
 
 console.log(ollieTheCat[keyVariable]);</code></pre>
+					<p>Note that you can only use variables with bracket notation.</p>
 				</section>
 
 				<section>
 					<h3>Let's Develop It!</h3>
 					<p>Create an animal object, and define these properties on it:</p>
 					<ul>
-						<li>"username" (a string)</li>
-						<li>"tagline" (a string)</li>
-						<li>"noises" (an array of strings)</li>
-						<li>"3 fav foods" (an array of strings)</li>
+						<li><code>name</code> - a string</li>
+						<li><code>description</code> - a string</li>
+						<li><code>noises</code> - an array of strings</li>
+						<li><code>3 fav foods</code> - an array of strings</li>
 					</ul>
-					<p>For each property, decide whether its best to use dot notation or bracket notation.</p>
 				</section>
 
 				<section>
@@ -470,13 +572,13 @@ console.log(ollieTheCat[keyVariable]);</code></pre>
 	{ name: 'Mabel', age: 6, furColor: 'gray' }
 ];</code></pre>
 					<p>What would be the result?</p>
-<pre><code class="javascript">myCats[0].name
-myCats[1]furColor
-myCats[1]["Fur Color"]</code></pre>
+<pre><code class="javascript">console.log(myCats[0].name);
+console.log(myCats[1]furColor);
+console.log(myCats[1]["Fur Color"]);</code></pre>
 				</section>
 
 				<section>
-					<h3>Iterating Objects</h3>
+					<h3>Iterating over properties of objects</h3>
 <pre><code class="javascript">var zoo = {
 	birds: 3,
 	bears: 5,
@@ -490,16 +592,12 @@ for(var key in zoo) {
 
 				<section>
 					<h3>Let's Develop It!</h3>
-					<p>Create a variable called <code>animals</code> and set it equal to an empty array. Using any method you prefer, add your animal from the last object exercise to the animals array.</p>
-					<p>Create a variable called <code>quackers</code> and assign it to this example object:</p>
-<pre><code class="javascript">{ username: 'DaffyDuck', tagline: 'Yippeee!', noises: ['quack', 'honk', 'sneeze', 'growl'] }</code></pre>
-					<p>Add quackers to the animals array using a different method than before. Inspect your animals array to ensure you have two objects inside.</p>
-					<p>Create two more animal objects and add them to your animals array. They should have these properties and your choice of values: username (with a string value) tagline (with a string value) noises (with an array of values) Check the length property of your array. It should give you 4.</p>
+					<p><a href="files/exercise-arrayofobjects.html" target="_new">Exercise instructions</a></p>
 				</section>
 
 				<section>
 					<h3>Nested Objects</h3>
-					<img src="img/nesting.png" height="359" width="705" alt="">
+					<img src="img/nesting.png" height="359" width="705" alt="" style="max-height:300px;width:auto;">
 <pre><code class="javascript">var doll = {
 	size: 'large',
 	innerDoll: { size: 'medium'}
@@ -512,17 +610,15 @@ console.log(doll);</code></pre>
 
 				<section>
 					<h2>Let's Develop It!</h2>
-					<p>Start with your property of animals from the previous exercise.</p>
-					<p>Add an "outfit" property to each animal, which describes different parts of their outfit using different properties, for example, <code>shirt: "blue"</code>.</p>
-					<p>Log out the outfit on each animal to make sure it worked.</p>
+					<p>Start with your array of animals from the previous exercise.</p>
+					<p>Add an <code>outfit</code> property to each animal, which contains an object that describes different parts of their outfit, for example, <code>shirt: "blue"</code>.</p>
+					<p>Log out the outfit of each animal to make sure it worked.</p>
+					<p><strong>Bonus:</strong> Modify your loop from the last exercise to include the animal's outfit in the output, e.g. "Daffy Duck is wearing blue pants and a white shirt."</p>
 				</section>
 
 				<section>
-					<h3>Built-in Objects</h3>
-				</section>
-
-				<section>
-					<h3>Global Objects</h3>
+					<h2>Questions?</h2>
+					<p>Questions on objects before we move on?</p>
 				</section>
 
 				<!-- Functions -->

@@ -1,0 +1,94 @@
+/* Pretty code box */
+
+.codebox {
+    border:1px solid black;
+    background-color:#EEEEFF;
+    width:100%;
+    overflow:auto;
+    padding:10px;
+}
+
+pre {
+	margin: 0;
+}
+
+code{
+	word-wrap: break-word;
+}
+
+/*Overall Design*/
+
+body{
+	background-color: #fde7e8;
+	font-family: Sans-Serif;
+	line-height: 1.5;
+	margin: 2em;
+	padding: 0;
+}
+
+#wrapper{
+	background-color: #fff;
+}
+
+#header{
+	background-color: #F05B62;
+	margin: 0;
+	padding: 1em;
+	color: #fff;
+}
+
+#main{
+	padding: 2em;
+}
+
+#footer{
+	background-color: #F05B62;
+	margin: 0;
+	padding: 1em;
+	color: #fff;
+	clear: both;
+}
+
+div#footer a{
+	color: #fff;
+}
+
+/*Sidebar links*/
+
+#sidebar ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 5px;
+}
+
+#sidebar ul li {
+	display: inline-block;
+	width: 95%;
+	height: 40px;
+	line-height: 40px;
+	font-size: 130%;
+	padding: 5px;
+	margin-bottom: 5px;
+	background: #3B597D;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#1d2c3e), to(#3B597D));
+	background: -webkit-linear-gradient(#1d2c3e, #3B597D);
+	background: -moz-linear-gradient(#1d2c3e, #3B597D);
+	background: -ms-linear-gradient(#1d2c3e, #3B597D);
+	background: -o-linear-gradient(#1d2c3e, #3B597D);
+	background: linear-gradient(#1d2c3e, #3B597D);
+	border: 1px solid #1d2c3e;
+	border-radius: 2px;
+	font-weight: bold;
+}
+
+#sidebar ul li a{
+	text-decoration: none;
+	color: #ffffff;
+}
+
+code {
+	color: #2a4758;
+	font-family: 'Courier New', courier, monospace;
+	font-size: 1em;
+	font-weight: bold;
+}
