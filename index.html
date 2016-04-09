@@ -167,6 +167,8 @@
 	console.log(local);
 };
 
+func();
+
 console.log(local);</code></pre>
 				</section>
 
@@ -179,6 +181,8 @@ var func = function() {
 	console.log(local, global);
 };
 
+func();
+
 console.log(global);</code></pre>
 				</section>
 
@@ -190,6 +194,8 @@ console.log(global);</code></pre>
 var func = function() {
 	local = "I'm available everywhere, too!";
 };
+
+func();
 
 console.log(local);</code></pre>
 				</section>
@@ -209,13 +215,47 @@ alert(g + " outside go");</code></pre>
 				</section>
 
 				<section>
+					<h2>Questions?</h2>
+					<p>Questions about variables, scope, or precedence?</p>
+				</section>
+
+				<section>
 					<h3><code>this</code></h3>
-					<p>Add more info about this</p>
+					<p>Each time we create a function, JavaScript creates a keyword called <code>this</code>.</p>
+					<p>The keyword <code>this</code> refers to the object inside which the function is created.</p>
+					<p class="fragment">Huh?</p>
+					<p class="fragment">Let's look at some examples.</p>
+				</section>
+
+				<section>
+					<h3><code>this</code> inside methods of objects</h3>
+<pre><code class="javascript">var natalie = {
+	living: true,
+	age: 42,
+	getAge: function(){
+		return this.age; //this refers to natalie - the object that contains this function
+	}
+};
+
+console.log(natalie.getAge());</code></pre>
+				</section>
+
+				<section>
+					<h3><code>this</code> inside callback functions</h3>
+<pre><code class="xml"><button id="myBtn">A button!</button></code></pre>
+<pre><code class="javascript">var btn = document.getElementById('myBtn');
+
+btn.onclick = function(){
+	var text = this.innerHTML;
+
+	console.log(text);
+};</code></pre>
+
 				</section>
 
 				<section>
 					<h2>Questions?</h2>
-					<p>Any questions about variables or <code>this</code>?</p>
+					<p>Any questions about <code>this</code>?</p>
 				</section>
 
 				<!-- Arrays -->
@@ -298,14 +338,33 @@ for(var i = 0; i &lt; classes.length; i++) {
 
 				<section>
 					<h3>Array <code>join()</code></h3>
+					<p>Converts an array to a string.</p>
+					<p>Takes a single argument - the string that should separate the individual items.</p>
 				</section>
 
 				<section>
-					<h3>Array <code>map()</code></h3>
+					<h3>Array <code>join()</code></h3>
+<pre><code class="javascript">var classes = ['HTML 101', 'HTML 201', 'JS 101', 'JS 201'];
+
+var classes1 = classes.join();
+var classes2 = classes.join(', ');
+var classes3 = classes.join(' + ');
+var classes4 = classes.join('');</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It! (again)</h3>
+					<p>Starting with this array:</p>
+<pre><code class="javascript">var noisesArray = ["quack", "sneeze", "boom"];</code></pre>
+					<p>Output "<code>quack! sneeze! boom!</code>" to the console.</p>
 				</section>
 
 				<section>
 					<h3>Array <code>filter()</code></h3>
+				</section>
+
+				<section>
+					<h3>Array <code>map()</code></h3>
 				</section>
 
 				<!-- Objects -->
