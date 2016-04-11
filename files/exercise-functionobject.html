@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GDI JavaScript 201 Exercise</title>
+	<link rel="stylesheet" href="exercises.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		// Powers show/hide buttons.
+		$( document ).ready(function() {
+			$("div.codebox").hide();
+		});
+		function showSolution(num) {
+			$("div#example" + num + "Code").toggle();
+		}
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<h1>Animal Outfits and Snacks</h1>
+		</div>
+		<div id="main">
+			<p>Start with the array of animals we worked with earlier.</p>
+			<ul>
+				<li>Write a <code>getAnimalOutfit</code> function that takes in a single animal object as an argument and returns a description of the animal's outfit, like "blue pants and red shirt and white shoes".</li>
+				<li>Add a <code>3 fav foods</code> (array of strings) property to each animal in the array.</li>
+				<li>Write a <code>feedAnimal</code> function that takes in a single animal object as an argument and print out what the animals is eating, e.g. "Zebra is eating grass and leaves and plants."</li>
+			</ul>
+			<h2>Bonus Exercises</h2>
+			<p>If you finish early, try one or more of these:</p>
+			<ol>
+				<li>Randomly pick a different food to display each time the <code>feedAnimal</code> function is called.</li>
+				<li>Implement a &ldquo;pretty join&rdquo; function so it reads "bla, bla, and bla" for the foods.</li>
+				<li>Make an animal-themed insult generator.</li>
+			</ol>
+		</div>
+		<div id="footer">
+			<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+		</div>
+	</div>
+</body>
+</html>

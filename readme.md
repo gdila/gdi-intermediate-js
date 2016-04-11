@@ -1,18 +1,16 @@
-> Please read our slide creation guidelines in [the wiki](https://github.com/girldevelopit/gdi-slides-template/wiki). Then, delete this banner and add the specifics about your class below.
+# JavaScript 201: Intermediate JavaScript
 
-# Add Your Course Title Here
-
-Slides and materials are hosted at [http://example.com/](http://example.com/).
+Slides and materials are hosted at [http://gdila.org/js201](http://gdila.org/js201).
 
 ## Course description
 
-Use this space for a short description of your course. We recommend using the description from your meetup event.
+Take your JavaScript skills to the next level with this class, which will build on skills learned in JavaScript 101 and take those skills to new and deeper levels.
 
-**Cost:** 
+**Cost: $90**
 
-**Dates:** 
+**Dates: April 23 and April 30, 2016**
 
-**Location:** 
+**Location: Opodz in Little Tokyo**
 
 A limited number of scholarships are available for those with a financial hardship. To apply, contact us at...
 
@@ -23,27 +21,24 @@ List any prerequisites for this class, including any previous classes or the equ
 
 You should have:
 
-(a) taken Intro or Intermediate HTML/CSS through Girl Develop It, or
+(a) taken HTML/CSS 101: Introduction to HTML and CSS with Girl Develop It or have equivalent knowledge,
 
-(b) built and managed websites on your own,
-
-**And also:**
-
-(a) taken intro to JavaScript through Girl Develop It, or
-
-(b) be familiar with syntax, arrays, conditionals, for and while loops, event handling, jQuery, AJAX requests, and handling JSON responses.
+(b) taken JavaScript 101: Introduction to JavaScript through Girl Develop It, or be familiar with JavaScript syntax, variables, arrays, conditionals, for and while loops, objects, event handling and DOM manipulation.
 
 
 ### Tech requirements:
 
  - Your laptop (Mac, PC, or Linux are all okay).
- - A modern web browser - either Chrome or Firefox with Firebug installed.
- - A text editor. We recommend Sublime Text 2 (free; available for Mac, PC, and Linux).
+ - A modern web browser - we recommend Google Chrome
+ - A text editor. We recommend Sublime Text
 
 
 ### Topics covered:
 
- - The topics you plan to cover
- - Written in list form
- - Here's another one
-
+ - Variables, including scope, local variables, global variables, and the this keyword. This is a review and a deeper dive into variables than we covered in 101
+ - Arrays, including join, map, and filter functions. Again, this is a review and then a deeper dive than covered in 101
+ - Functions, including function declarations, function expressions, hoisting, IIFEs, arguments, this, closures and the bind, apply, and call methods. A review of what we know already, then a deeper look at functions.
+ - Objects, including different ways to create objects, the built-in objects and the global object. A review of what we learned in 101, then a deeper look at objects.
+ - Object-oriented JavaScript, including prototypes and inheritance
+ - Advanced DOM Manipulation, including event delegation
+ - Ajax and JSON - including how to make asynchronous calls, parse JSON responses, and update the UI
