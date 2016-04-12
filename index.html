@@ -1431,7 +1431,10 @@ var book = new Book({
 					<p>Then, you can access the data stored inside and use it while creating new nodes:</p>
 <pre><code class="javascript">var p = document.createElement('p');
 p.innerHTML = 'My name is ' + myProfile.firstName + ' ' + myProfile.lastName + '. ';
-p.innerHTML += 'My cats are ' + myProfile.cats.join(', ') + '.';</code></pre>
+p.innerHTML += 'My cats are ' + myProfile.cats.join(' and ') + '.';
+
+var body = document.getElementsByTagName('body')[0];
+body.appendChild(p);</code></pre>
 				</section>
 
 				<section>
