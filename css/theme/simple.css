@@ -238,3 +238,33 @@ div.left-align{
   overflow: visible;
   position: static;
   width: auto;}
+
+/*********************************************
+ * Tables
+ *********************************************/
+
+.reveal table {
+  border-collapse: collapse;
+  font-size: 0.66em;
+  margin: 1em auto;
+  padding: 0;
+  width: 100%;
+}
+
+.reveal th {
+  border-bottom: 3px solid #333;
+  font-weight: bold;
+}
+
+.reveal td {
+  border-bottom: 1px dotted #333;
+  padding: 0.25em 1em;
+}
+
+.reveal .success td {
+  background-color: #dff0d8;
+}
+
+.reveal .failure td {
+  background-color: #f2dede;
+}

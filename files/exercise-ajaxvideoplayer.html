@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GDI JavaScript 201 Exercise</title>
+	<link rel="stylesheet" href="exercises.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		// Powers show/hide buttons.
+		$( document ).ready(function() {
+			$("div.codebox").hide();
+		});
+		function showSolution(num) {
+			$("div#example" + num + "Code").toggle();
+		}
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<h1>Ajax Video Player</h1>
+		</div>
+		<div id="main">
+			<p>In this exercise, you'll use what we've learned about JSON and Ajax to make a video player that fetches the video JSON asynchronously.</p>
+			<ol>
+				<li>You can start with your solution from the earlier video player exercise, or you can download a fresh copy of <a href="json-starter.zip">json-starter.zip</a> and start from there.</li>
+				<li>The webpage currently has an in-page JSON describing the videos. Make a file in your project folder called <code>videos.json</code>, and copy the JSON into that file. Delete the JSON from the <code>script.js</code> file.
+				<p>Note that when you create your <code>videos.json</code> file you do not need the variable declaration. Just the JSON.</p>
+				</li>
+				<li>Set up an ajax call to get the data in the <code>videos.json</code> file.</li>
+				<li>In the success callback, iterate through the videos and render each one onto the page, using the <code>addVideoToList</code> function. Review the earlier slides to remember how to set up the code.</li>
+			</ol>
+
+			<h2>Bonus</h2>
+			<p>Create another JSON file with another set of vidoes, and bring that into the page as well. Try to generalize your code so that you could bring any number of JSON files in.</p>
+
+			<h2>Tips</h2>
+			<p>Use your browser developer tools to make debugging easier while working on this. Check for errors, and use <code>console.log()</code> to figure out how far your code makes it, and what the values of your variables are along the way.</p>
+
+		</div>
+		<div id="footer">
+			<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+		</div>
+	</div>
+</body>
+</html>

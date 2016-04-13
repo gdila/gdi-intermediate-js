@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GDI JavaScript 201 Exercise</title>
+	<link rel="stylesheet" href="exercises.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		// Powers show/hide buttons.
+		$( document ).ready(function() {
+			$("div.codebox").hide();
+		});
+		function showSolution(num) {
+			$("div#example" + num + "Code").toggle();
+		}
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<h1>Running a Local Server</h1>
+		</div>
+		<div id="main">
+			<p>Chrome has a permissions policy for local files using the <code>file://</code> protocol that disallows ajax requests, and some APIs won't work on the <code>file://</code> protocol. We recommend running a simple server on your machine. Here are the options:</p>
+			<h2>Command Line stuff (Python)</h2>
+			<h3>Mac or Linux</h3>
+			<p>Macs and most Linux distros come with Python preinstalled. The following steps should work without additional setup:</p>
+			<ol>
+				<li>Open Terminal</li>
+				<li>Navigate to your project directory. You can do this using the <code>cd</code> command in the terminal.</li>
+				<li>Run this command: <code>python -m SimpleHTTPServer</code>
+					<ul><li>If you are running Python 3, run this command instead: <code>python -m http.server 8000</code></li></ul>
+				</li>
+				<li>If successful, you should then be able to access your project folder by pointing your browser to http://localhost:8000</li>
+			</ol>
+			<h3>Windows</h3>
+			<p>If you are running Windows, you will need to make sure you have Python installed. To check, open a command prompt and enter <code>python</code>. If you see a response including the version number, Python is ready to go. Note whether the version starts with 2 or 3, press <code>ctrl+c</code> to return to the regular command prompt, and follow steps 2-4 of the Mac instructions above.</p>
+			<p>If the <code>python</code> command produces an error message, follow the steps below to install Python:</p>
+			<ol>
+				<li>Go to the <a href="https://www.python.org/downloads/">Python Downloads</a> page, and click one of the yellow buttons to download Python 2 or 3. Most of your classmates and teachers will be using Python 2, but 3 will work as well. (More info on version selection here.)</li>
+				<li>Double-click the downloaded file to install Python.</li>
+				<li>When the installation is complete, open PowerShell (NOT command line), and run this command: <code>[Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Python27\;C:\Python27\Scripts\", "User")</code>
+					<p><small>(Note: This code assumes that you have installed Python 2.7. If you installed a different version, look in your C:\ drive and check the name of the "PythonXX" directory. Replace both instances of Python27 in the code above with the directory name on your computer.)</small></p></li>
+				<li>Run the <code>python</code> command again. You should now see a response with the Python version number. Using PowerShell or command line, follow steps 2-4 of the Mac instructions above.</li>
+			</ol>
+
+			<h2>Without the command line (PHP)</h2>
+			<p>Does all that command line stuff make you break out in a sweat? No worries! We just need a simple server up and running to be able to run code. To make it as easy as possible, you can download and install <a href="https://serverpress.com/get-desktopserver/">Desktop Server</a>.</p>
+			<p>The free version is just fine. This will give you a nice GUI environment to set up a local server, and it works on both Windows and Mac. After you've installed, follow these instructions to get a server running:</p>
+			<ol>
+				<li>Open Desktop Server. Select "Yes. Restart Desktop Server with priviledges."</li>
+				<li>Enter your system password if prompted</li>
+				<li>Select "Create a new development site."</li>
+				<li>Change the URL if you like - but "www.example.dev" is just fine.</li>
+				<li>Select "Blank (non WordPress) as your BluePrint.</li>
+				<li>Make a note of where the files will be located. It's likely in your Documents folder.</li>
+				<li>Click "Create".</li>
+				<li>Desktop Server will do its thing, and then you should see a test page when you go to your URL - www.example.dev in the browser.</li>
+				<li>Copy your project files to the folder that was created and work on them from there.</li>
+			</ol>
+
+
+		</div>
+		<div id="footer">
+			<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1454,6 +1454,13 @@ body.appendChild(p);</code></pre>
 				</section>
 
 				<section>
+					<h3>Local server</h3>
+					<p>We're going to start writing some ajax now.</p>
+					<p>If you haven't already, get a local server running.</p>
+					<p><a href="files/exercise-localserver.html" target="_new">Local Server Help</a></p>
+				</section>
+
+				<section>
 					<h3>The <code>XMLHttpRequest</code> object</h3>
 					<ul>
 						<li>A native JavaScript object that can communicate asynchronously between the client and the server.</li>
@@ -1489,8 +1496,9 @@ body.appendChild(p);</code></pre>
 
 if(request) {
 	request.addEventListener('readystatechange', function(){
-	console.log(request.readyState);
-});</code></pre>
+		console.log(request.readyState);
+	});
+}</code></pre>
 				</section>
 
 				<section>
@@ -1510,7 +1518,7 @@ if(request) {
 				</section>
 
 				<section>
-					<h3>Request types: <code>GET</code> and <code>PUT</code></h3>
+					<h3>Request types: <code>GET</code> and <code>POST</code></h3>
 					<dl>
 						<dt><code>GET</code></dt>
 						<dd>
@@ -1520,14 +1528,14 @@ if(request) {
 								<li>Also capable of sending a small amount of data as a query string</li>
 							</ul>
 						</dd>
-						<dt><code>PUT</code></dt>
+						<dt><code>POST</code></dt>
 						<dd>
 							<ul>
 								<li>Useful for sending a lot of data to the server</li>
 							</ul>
 						</dd>
 					</dl>
-					<p><small>Just FYI, there are some other request types too (<code>PUT</code>, <code>DELETE</code>, and <code>HEAD</code>, for example), but they're not a concern for ajax stuff.</small></p>
+					<p><small>Just FYI, there are some other request types too (<code>PUT</code>, <code>DELETE</code>, and <code>HEAD</code>, for example), but they're not a concern for the stuff we're doing.</small></p>
 				</section>
 
 				<section>
@@ -1536,6 +1544,54 @@ if(request) {
 						<li>A string that contains either a relative, absolute, or full path to a file on the server</li>
 						<li>The file you are requesting must reside in the same domain as the JavaScript file that is making the request.</li>
 					</ul>
+				</section>
+
+				<section>
+					<h3>Cross Domain Policy</h3>
+					<p>If we're on this page:</p>
+					<p>http://store.company.com/dir/page.html</p>
+					<p>Here's how these ajax requests will work out:</p>
+					<table>
+						<thead>
+							<tr>
+								<th>URL</th>
+								<th>Outcome</th>
+								<th>Reason</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="success">
+								<td>http://store.company.com/dir2/other.html</td>
+								<td>Success</td>
+								<td></td>
+							</tr>
+							<tr class="success">
+								<td>http://store.company.com/dir/inner/other.html</td>
+								<td>Success</td>
+								<td></td>
+							</tr>
+							<tr class="failure">
+								<td>https://store.company.com/secure.html</td>
+								<td>Failure</td>
+								<td>Different protocol</td>
+							</tr>
+							<tr class="failure">
+								<td>http://store.company.com:81/dir/etc.html</td>
+								<td>Failure</td>
+								<td>Different port</td>
+							</tr>
+							<tr class="failure">
+								<td>http://news.company.com/dir/other.html</td>
+								<td>Failure</td>
+								<td>Different host</td>
+							</tr>
+							<tr class="failure">
+								<td>http://google.com</td>
+								<td>Failure</td>
+								<td>Different host</td>
+							</tr>
+						</tbody>
+					</table>
 				</section>
 
 				<section>
@@ -1557,15 +1613,18 @@ if(request) {
 <pre><code class="javascript">var request = new XMLHttpRequest();
 
 if(request) {
-	request.addEventListener('readystatechange', function(){...});
-	request.open('GET', 'file.ext', true);
+	request.addEventListener('readystatechange', function(){
+		console.log(request.readyState);
+	});
+	request.open('GET', 'me.json', true);
 	request.send();
 }</code></pre>
+					<p>Here's a <a href="files/me.json">me.json</a> file you can include in your project to call.</p>
 				</section>
 
 				<section>
-					<h3><code>PUT</code>: The <code>setRequestHeader()</code> method</h3>
-					<p>Since we're sending data with the <code>PUT</code> type, we have an extra step. We need to use the <code>setRequestHeader</code> method of the XHR object to set the request headers.</p>
+					<h3><code>POST</code>: The <code>setRequestHeader()</code> method</h3>
+					<p>Since we're sending data with the <code>POST</code> type, we have an extra step. We need to use the <code>setRequestHeader</code> method of the XHR object to set the request headers.</p>
 					<p>Request headers are bits of metadata that describe the request so the server understands what to expect from the data received.</p>
 					<p><code>setRequestHeader()</code> takes two arguments:</p>
 					<ol>
@@ -1584,19 +1643,23 @@ if(request) {
 				</section>
 
 				<section>
-					<h3><code>send()</code> using <code>PUT</code></h3>
+					<h3><code>send()</code> using <code>POST</code></h3>
 <pre><code class="javascript">var request = new XMLHttpRequest();
 
 if(request) {
-	request.addEventListener('readystatechange', function(){...});
-	request.open('POST', 'file.ext', true);
+	request.addEventListener('readystatechange', function(){
+		console.log(request.readyState);
+	});
+	request.open('POST', 'me.php', true);
 	request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	request.send('name=Natalie+MacLees&message=JavaScript+is+awesome%21');</code></pre>
+	request.send('name=Natalie+MacLees&message=JavaScript+is+awesome%21');
+}</code></pre>
 				</section>
 
 				<section>
 					<h3>Let's Develop It!</h3>
-					<p>Some kind of exercise</p>
+					<p>In your project folder, create a simple <code>.txt</code> file with a sentence of plain text in it.</p>
+					<p>Next, set up a new XHR object and get the file. Use the console tools to view the request.</p>
 				</section>
 
 				<section>
@@ -1625,10 +1688,19 @@ if(request) {
 
 				<section>
 					<h3>Checking the <code>readyState</code></h3>
-<pre><code class="javascript">function doSomething() {
+<pre><code class="javascript">var request = new XMLHttpRequest();
+
+var doSomething = function() {
 	if (request.readyState == 4) {
+		console.log('The request is complete!');
 		//do something with the response here
 	}
+}
+
+if(request) {
+	request.addEventListener('readystatechange', doSomething);
+	request.open('GET', 'me.json', true);
+	request.send();
 }</code></pre>
 					<p><code>doSomething()</code> gets called every time the value of the <code>readyState</code> property changes, but our <code>if</code> statement ensures nothing will happen unless the value is <code>4</code>.</p>
 				</section>
@@ -1649,10 +1721,11 @@ if(request) {
 					<h3>200 OK</h3>
 					<p>The most common status code is <code>200</code>, which means <code>OK</code>. It indicates the response was successfully sent.</p>
 					<p>The XHR object has a property called <code>status</code> where the status code is stored. We can check it to make sure we got a successful response:</p>
-<pre><code class="javascript">function doSomething() {
-	if (request.readyState == 4) {
-		if (request.status == 200) {
-			//response was successful, do something
+<pre><code class="javascript">var doSomething = function() {
+	if(request.readyState == 4) {
+		if(request.status == 200) {
+			console.log('The request is complete and ok.');
+			//do something with the response here
 		}
 	}
 }</code></pre>
@@ -1661,12 +1734,13 @@ if(request) {
 				<section>
 					<h3>When things don't go as planned...</h3>
 					<p>We can also add an <code>else</code> statement to deal with situations where things don't go according to plan:</p>
-<pre><code class="javascript">function doSomething() {
-	if (request.readyState == 4) {
-		if (request.status == 200) {
-			//response was successful, do something
+<pre><code class="javascript">var doSomething = function() {
+	if(request.readyState == 4) {
+		if(request.status == 200) {
+			console.log('The request is complete and ok.');
+			//do something with the response here
 		} else {
-			//something went wrong!
+			//something went wrong
 		}
 	}
 }</code></pre>
@@ -1675,10 +1749,10 @@ if(request) {
 				<section>
 					<h3>The <code>responseText</code> property</h3>
 					<p>The <code>responseText</code> property of the XHR object contains the data sent from the server as a string.</p>
-<pre><code class="javascript">function doSomething() {
-	if (request.readyState == 4) {
-		if (request.status == 200) {
-			console.log(request.responseText);
+<pre><code class="javascript">var doSomething = function() {
+	if(request.readyState == 4) {
+		if(request.status == 200) {
+			console.log(console.log(request.responseText));
 		}
 	}
 }</code></pre>
@@ -1699,22 +1773,25 @@ if(request) {
 					<h3>First, we need to create, prep, and send our request:</h3>
 <pre><code class="javascript">var request = new XMLHttpRequest();
 
-var displayResponse = function(request){
+var displayResponse = function(){
 	// we'll write some code here later
 };
 
 if (request) {
-	request.onreadystatechange = function(){
-		displayResponse(request);
-	};
+	request.addEventListener('readystatechange', displayResponse);
 	request.open('GET', 'me.json', true);
 	request.send();
 }</code></pre>
 				</section>
 
 				<section>
-					<h3>Next, we'll handle the response</h3>
-<pre><code class="javascript">var displayResponse = function(request) {
+					<h3>Next, we need a place in our HTML to display the results:</h3>
+<pre><code class="xml">&lt;div id="resultsBox"&gt;&lt;/div&gt;</code></pre>
+				</section>
+
+				<section>
+					<h3>Then, we'll handle the response</h3>
+<pre><code class="javascript">var displayResponse = function(){
 	if (request.readyState == 4) {
 		if (request.status == 200) {
 			var jsonObj = JSON.parse(request.responseText);
@@ -1729,16 +1806,25 @@ if (request) {
 		}
 	}
 };</code></pre>
+					<p>We're using what we already learned about dealing with JSON!</p>
 				</section>
 
 				<section>
 					<h3>Let's Develop It!</h3>
-					<p>Exercise that will require a local server.</p>
+					<p><a href="files/exercise-ajaxvideoplayer.html" target="_new">Exercise Instructions</a></p>
 				</section>
 
 				<section>
 					<h3>Ajax</h3>
 					<p>The <code>XMLHttpRequest</code> is the heart and soul of ajax. Its methods and properties drive the requests that make ajax feel so responsive.</p>
+				</section>
+
+				<section>
+					<h3>Things to keep in mind</h3>
+					<ul>
+						<li>Cross domain requests are restricted.</li>
+						<li>Multiple ajax requests don't return in the same order they were sent.</li>
+					</ul>
 				</section>
 
 				<section>
