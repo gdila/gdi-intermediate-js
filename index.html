@@ -162,7 +162,7 @@
 
 				<section>
 					<h3>Local Scope</h3>
-<pre><code class ="javascript">var func = function() {
+<pre><code class ="javascript">function func() {
 	var local = true;
 	console.log(local);
 };
@@ -176,7 +176,7 @@ console.log(local);</code></pre>
 					<h3>Global Scope</h3>
 <pre><code class ="javascript">var global = "I'm available everywhere!";
 
-var func = function() {
+function func() {
 	var local = "I'm available inside this function.";
 	console.log(local, global);
 };
@@ -191,7 +191,7 @@ console.log(global);</code></pre>
 					<p>Be careful to properly declare and initialize your variables to avoid unexpected global scope.</p>
 <pre><code class="javascript">var global = "I'm available everywhere.";
 
-var func = function() {
+function func() {
 	local = "I'm available everywhere, too!";
 };
 
@@ -285,7 +285,7 @@ console.log(classes.length); // what will this display?
 <pre><code class="javascript">var classes = ['HTML 101', 'HTML 201', 'JS 101', 'JS 201'];
 
 for(var i = 0; i &lt; classes.length; i++) {
-	console.log(i); // What will this display?
+	console.log(classes[i]); // What will this display?
 }
 </code></pre>
 				</section>
@@ -294,7 +294,7 @@ for(var i = 0; i &lt; classes.length; i++) {
 					<h3>Let's Develop It!</h3>
 					<p>Starting with this array:</p>
 <pre><code class="javascript">var noisesArray = ["quack", "sneeze", "boom"];</code></pre>
-					<p>Output "<code>quack! sneeze! boom!</code>" to the console.</p>
+					<p>Output &ldquo;<code>quack! sneeze! boom!</code>&rdquo; to the console.</p>
 				</section>
 
 				<section>
@@ -307,28 +307,31 @@ for(var i = 0; i &lt; classes.length; i++) {
 					<h3><code>array.join()</code></h3>
 <pre><code class="javascript">var classes = ['HTML 101', 'HTML 201', 'JS 101', 'JS 201'];
 
-var classes1 = classes.join();
-var classes2 = classes.join(', ');
-var classes3 = classes.join(' + ');
-var classes4 = classes.join('');</code></pre>
+console.log(classes.join());
+console.log(classes.join(', '));
+console.log(classes.join(' + '));
+console.log(classes.join(''));</code></pre>
 				</section>
 
 				<section>
 					<h3>Let's Develop It! (again)</h3>
 					<p>Starting with this array:</p>
 <pre><code class="javascript">var noisesArray = ["quack", "sneeze", "boom"];</code></pre>
-					<p>Output "<code>quack! sneeze! boom!</code>" to the console.</p>
+					<p>Output &ldquo;<code>quack! sneeze! boom!</code>&rdquo; to the console.</p>
 				</section>
 
 				<section>
 					<h3>The <code>filter()</code> method of arrays</h3>
 <pre><code class="javascript">var numbers = [12, 5, 8, 44, 53, 130, 44, 4];
 
-function isBigEnough(value) {
-	return value >= 10;
+function isBigEnough(element) {
+	return element >= 10;
 }
 
-var bigNumbers = numbers.filter(isBigEnough);</code></pre>
+var bigNumbers = numbers.filter(isBigEnough);
+
+console.log(numbers);
+console.log(bigNumbers);</code></pre>
 					<p>The <code>filter()</code> method creates a new array with all elements that pass the test implemented by the provided function.</p>
 				</section>
 
@@ -338,8 +341,8 @@ var bigNumbers = numbers.filter(isBigEnough);</code></pre>
 					<p>If the function returns true, the item is added to the new array.</p>
 <pre><code class="javascript">var numbers = [12, 5, 8, 44, 53, 130, 44, 4];
 
-function isBigEnough(value) {
-	return value >= 10;
+function isBigEnough(element) {
+	return element >= 10;
 }
 
 var bigNumbers = numbers.filter(isBigEnough);</code></pre>
@@ -419,9 +422,7 @@ console.log(numbersPlusFive);</code></pre>
 				<section>
 					<h3>Creating objects</h3>
 					<p>So far, we've learned how to create an object by doing this:</p>
-<pre><code class="javascript">var ollieTheCat = {};
-ollieTheCat.furColor = 'gray';
-ollieTheCat.age = 1;</code></pre>
+<pre><code class="javascript">var ollieTheCat = {};</code></pre>
 					<p>Or by doing this:</p>
 <pre><code class="javascript">var ollieTheCat = {
 	furColor: 'gray',
@@ -433,9 +434,7 @@ ollieTheCat.age = 1;</code></pre>
 				<section>
 					<h3>The <code>new</code> keyword</h3>
 					<p>We can also create new objects by using the <code>new</code> keyword, like this:</p>
-<pre><code class="javascript">var ollieTheCat = new Object();
-ollieTheCat.furColor = 'gray';
-ollieTheCat.age = 1;</code></pre>
+<pre><code class="javascript">var ollieTheCat = new Object();</code></pre>
 				</section>
 
 				<section>
@@ -448,7 +447,7 @@ ollieTheCat.age = 1;</code></pre>
 <pre><code class="javascript">var ollieTheCat = {};
 ollieTheCat.furColor = 'gray';</code></pre>
 					<p>or by using bracket notation:</p>
-<pre><code class="javascript">var OllieTheCat = {};
+<pre><code class="javascript">var ollieTheCat = new Object();
 ollieTheCat['furColor'] = 'gray';</code></pre>
 				</section>
 
@@ -493,7 +492,7 @@ console.log(ollieTheCat[keyVariable]);</code></pre>
 						<li><code>name</code> - a string</li>
 						<li><code>description</code> - a string</li>
 						<li><code>noises</code> - an array of strings</li>
-						<li><code>3 fav foods</code> - an array of strings</li>
+						<li><code>favorite foods</code> - an array of strings</li>
 					</ul>
 				</section>
 
