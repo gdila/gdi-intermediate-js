@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript 201: Intermediate JavaScript</title>
+
+		<meta name="description" content="Girl Develop It framework for easily creating beautiful presentations using HTML in GDI theme. Forked from Hakim El Hattab's reveal.js">
+		<meta name="author" content="Girl Develop It">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<!-- light editor --><link rel="stylesheet" href="lib/css/light.css">
+		<!-- dark editor <link rel="stylesheet" href="lib/css/dark.css">-->
+		<!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+
+		<link rel="stylesheet" href="plugin/accessibility-helper/css/accessibility-helper.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!-- If use the PDF print sheet so students can print slides-->
+
+		<link rel="stylesheet" href="css/print/pdf.css" type="text/css" media="print">
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<!-- OOP with JavaScript -->
+				<section>
+					<h3>Object-Oriented Programming (OOP)</h3>
+					<div class="fragment">
+						<p>&hellip;in JavaScript is really</p>
+						<h3>&ldquo;Object-oriented&rdquo; JavaScript</h3>
+						<p>JavaScript is not a strict OO language like Java, but we can still use it in an object-oriented way.</p>
+						<p>Future versions of JavaScript are already in the works with more OO features built into the language.</p>
+					</div>
+				</section>
+
+				<section>
+					<h3>JavaScript Object Prototypes</h3>
+					<p>Every object in JavaScript has a prototype.</p>
+					<p>All JavaScript objects inherit their properties and their methods from their prototype.</p>
+					<p>This is called <span class="blue">prototypal inheritance</span></p>
+				</section>
+
+				<section>
+					<h3>Object Prototypes</h3>
+					<p>We know that when we create a new array:</p>
+					<ul>
+						<li>It will have a <code>length</code> property</li>
+						<li>It will have a <code>map()</code> method</li>
+						<li>It will have a <code>filter()</code> method</li>
+						<li>It will have a <code>join()</code> method</li>
+					</ul>
+					<p>An array inherits these properties and methods from an <code>Array</code> prototype that defines what an array is (properties) and what it can do (methods)</p>
+				</section>
+
+				<section>
+					<h3>Object Prototype Example</h3>
+					<p>Let's use a book as an example of an object prototype.</p>
+					<div style="width:50%;margin-left:auto;margin-right:auto;border:5px solid #333;padding:0.5em;">
+						<h4>Book prototype</h4>
+						<p>Properties:</p>
+						<ul>
+							<li>title</li>
+							<li>author</li>
+							<li>pages</li>
+						</ul>
+						<p>Methods:</p>
+						<ul>
+							<li>read()</li>
+							<li>buy()</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h3>Object Prototype Instances</h3>
+					<p>There can be many <code class='blue'>instances</code> of object prototypes:</p>
+					<div style="overflow:hidden;">
+						<div style="width:33%;float:left;">
+							<div style="margin:0 0.5em;padding:0.5em;border:5px solid #333;">
+								<h4>The Giver</h4>
+								<p>by Lois Lowry</p>
+								<p>179 pages</p>
+							</div>
+						</div>
+						<div style="width:33%;float:left;">
+							<div style="margin:0 0.5em;padding:0.5em;border:5px solid #333;">
+								<h4>Fox in Sox</h4>
+								<p>by Dr. Seuss</p>
+								<p>62 pages</p>
+							</div>
+						</div>
+						<div style="width:33%;float:left;">
+							<div style="margin:0 0.5em;padding:0.5em;border:5px solid #333;">
+								<h4>A Wrinkle in Time</h4>
+								<p>by Madeline L'Engle</p>
+								<p>211 pages</p>
+							</div>
+						</div>
+					</div>
+					<p>Each is an <span class="blue">instance</span> of the <code>Book</code> object prototype.</p>
+				</section>
+
+				<section>
+					<h3>Defining an object prototype</h3>
+					<p>Define a <span class="blue">constructor</span> function with the object prototype's properties and methods:</p>
+<pre><code class="javascript">function Book(title, author, numPages) {
+	this.title = title;
+	this.author = author;
+	this.numPages = numPages;
+	this.currentPage = 0;
+	this.read = function() {
+		this.currentPage = this.numPages;
+		console.log("You read " + this.numPages + " pages!");
+	};
+}</code></pre>
+					<p>Conventionally, object prototype names are capitalized.</p>
+				</section>
+
+				<section>
+					<h3>Instantiating an object</h3>
+					<p>Now that we have a prototype, we can <span class="blue">instantiate</span> a new object:</p>
+<pre><code class="javascript">var book = new Book("Robot Dreams", "Isaac Asimov", 320);
+
+book.read(); // Will log "You read 320 pages!" to the console</code></pre>
+				<p>This creates a new object that inherits the properties and methods from the prototype that we defined.</p>
+				</section>
+
+				<section>
+					<h3>What does <code>new</code> do?</h3>
+					<ol>
+						<li>Creates a new <code>Object</code></li>
+						<li>Creates and binds a new <code>this</code> to that object</li>
+						<li>Sets the new Object's <code>prototype</code> property to be the constructor function's <code>prototype</code> object</li>
+						<li>Executes the constructor function</li>
+						<li>Returns the newly created object</li>
+					</ol>
+				</section>
+
+				<section>
+					<h3>Adding new properties to objects</h3>
+					<p>Let's say we've created two book objects using the Book prototype we set up earlier:</p>
+<pre><code class="javascript">var myBook1 = new Book('The Boxcar Children', 'Gertrude Chandler Warner', 160);
+
+var myBook2 = new Book('Around the World in 80 Days', 'Jules Verne', 315);</code></pre>
+					<p>Let's add a <code>series</code> property to the first book:</p>
+<pre><code class="javascript">myBook1.series = 'The Boxcar Children';</code></pre>
+					<p>This new property gets added to <span class="green">The Boxcar Children</span>, but not to <span class="green">Around the World in 80 days</span>, and not to any other new objects created from the Book prototype.</p>
+				</section>
+
+				<section>
+					<h3>Adding new properties and methods to object prototypes</h3>
+					<p>We can use the prototype property to add new properties and methods to the object prototype:</p>
+					<p>Adding a property:</p>
+<pre><code class="javascript">Book.prototype.series = '';</code></pre>
+					<p>Adding a method:</p>
+<pre><code class="javascript">Book.prototype.buy = function(){
+	console.log('You bought ' + this.name);
+}</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Create a <code>Video</code> object prototype. The <code>Video</code> object prototype should have the following properties and methods:</p>
+					<ul>
+						<li><code>title</code> - a string</li>
+						<li><code>uploader</code> - a string, the person who uploaded the video</li>
+						<li><code>seconds</code> - a number, the duration of the video</li>
+						<li><code>watch()</code> - a method that logs a string to the console, e.g. "You watched all 76 seconds of Maru in a box!"</li>
+					</ul>
+					<p>&nbsp;</p>
+					<p>Then instantiate a new <code>Video</code> object and call the <code>watch()</code> method on it.</p>
+				</section>
+
+				<section>
+					<h3>Object-oriented programming</h3>
+					<p>Object prototypes can inherit properties and methods from other object prototypes.</p>
+					<div style="overflow:hidden;">
+						<div style="width:33%;float:left;">
+							<div style="margin:0 0.5em;padding:0.5em;border:5px solid #333;">
+								<h4>Book</h4>
+								<ul>
+									<li><code>title</code></li>
+									<li><code>author</code></li>
+									<li><code>pages</code></li>
+									<li><code>read()</code></li>
+									<li><code>buy()</code></li>
+								</ul>
+							</div>
+						</div>
+						<div style="width:33%;float:left;">
+							<div style="margin:0 0.5em;padding:0.5em;border:5px solid #333;">
+								<h4>Ebook</h4>
+								<p>Inherits from book, but also has:</p>
+								<ul>
+									<li><code>filesize</code></li>
+									<li><code>download()</code></li>
+								</ul>
+							</div>
+						</div>
+						<div style="width:33%;float:left;">
+							<div style="margin:0 0.5em;padding:0.5em;border:5px solid #333;">
+								<h4>Paperback</h4>
+								<p>Inherits from book, but also has:</p>
+								<ul>
+									<li><code>cover</code></li>
+									<li><code>burn()</code></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3>Extending object prototypes</h3>
+					<p>First, define a constructor function</p>
+<pre><code class="javascript">function PaperBack(title, author, numPages, cover) {
+	Book.call(this, title, author, numPages);
+	this.cover = cover;
+}</code></pre>
+					<p>Extend the Book object prototype</p>
+<pre><code class="javascript">PaperBack.prototype = Object.create(Book.prototype);</code></pre>
+					<p>Define a new method on this object prototype</p>
+<pre><code class="javascript">PaperBack.prototype.burn = function() {
+	console.log("Omg, you burnt all " + this.numPages + " pages");
+	this.numPages = 0;
+}</code></pre>
+					<p>Instantiate a new object</p>
+<pre><code class="javascript">var paperback = new PaperBack("1984", "George Orwell", 250, "cover.jpg");
+paperback.read();
+paperback.burn();</code></pre>
+				</section>
+
+				<section>
+					<h3>Inheritance</h3>
+					<img src="img/book-ebook.png" height="400" width="400" alt="">
+					<p>All Ebooks are Books, but not all Books are Ebooks.</p>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Building on the exercise from last time, create a new object prototype <code>MusicVideo</code> that extends <code>Video</code>. The constructor should also take in an <code>artist</code> property.</p>
+					<p>Instantiate a new <code>MusicVideo</code> object and call the <code>watch()</code> method on it.</p>
+					<p>Add a new method to the <code>MusicVideo</code> object prototype called <code>rockOut()</code> that logs a message to the console, e.g. "You just rocked out to Shake it Off by Taylor Swift!"</p>
+				</section>
+
+				<section>
+					<h3>Clearer Constructors</h3>
+					<p>By passing in a config object, we can make our code easier to read and understand:</p>
+<pre><code class="javascript">function Book(config) {
+	this.title = config.title;
+	this.author = config.author;
+	this.numPages = config.numPages;
+	this.currentPage = 0;
+}</code></pre>
+<p>Then we pass in an object instead of a series of arguments to instantiate a new object:</p>
+<pre><code class="javascript">var book = new Book({
+	title: "Robot Dreams",
+	author: "Isaac Asimov",
+	numPages: 320
+});</code></pre>
+				</section>
+
+				<section>
+					<h3>Optional Arguments</h3>
+					<p>Use the <code>||</code> operator to define a default value for properties.</p>
+<pre><code class="javascript">function Book(config) {
+	this.title = config.title || "Untitled";
+	this.author = config.author || "Unknown";
+	this.numPages = config.numPages || 100;
+	this.currentPage = 0;
+}
+
+var book = new Book({
+	title: "Robot Dreams",
+	numPages: 320
+});</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Building on the exercise from last time, comment out the <code>MusicVideo</code> code.</p>
+					<p>Change the <code>Video</code> constructor function to accept an object literal instead of multiple arguments.</p>
+					<p>Define a default value for every property.</p>
+					<p>Finally, instantiate a new <code>Video</code> object and call the <code>watch()</code> method on it.</p>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<p>Any questions on object prototypes or inheritance?</p>
+				</section>
+
+			</div>
+			<footer>
+				<div class="copyright">
+					JavaScript 201 -- Los Angeles --
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /></a>
+				</div>
+			</footer>
+		</div>
+
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+						Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+										{ src: 'plugin/accessibility-helper/js/accessibility-helper.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

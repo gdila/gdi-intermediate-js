@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript 201: Intermediate JavaScript</title>
+
+		<meta name="description" content="Girl Develop It framework for easily creating beautiful presentations using HTML in GDI theme. Forked from Hakim El Hattab's reveal.js">
+		<meta name="author" content="Girl Develop It">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<!-- light editor --><link rel="stylesheet" href="lib/css/light.css">
+		<!-- dark editor <link rel="stylesheet" href="lib/css/dark.css">-->
+		<!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+
+		<link rel="stylesheet" href="plugin/accessibility-helper/css/accessibility-helper.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!-- If use the PDF print sheet so students can print slides-->
+
+		<link rel="stylesheet" href="css/print/pdf.css" type="text/css" media="print">
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<!-- Functions -->
+				<section>
+					<h3>Functions</h3>
+<pre><code class="javascript">function add(a, b) {
+	return a + b;
+};
+
+add(5, 4);</code></pre>
+					<p>Review</p>
+					<ul>
+						<li class="fragment">Declaring and defining</li>
+						<li class="fragment">Arguments or parameters</li>
+						<li class="fragment">Function name</li>
+						<li class="fragment">Function body</li>
+						<li class="fragment">Invocation</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Function Declaration</h3>
+<pre><code class="javascript">function nameImprover(name, adj) {
+	return 'Admiral ' + name + ' Mc' + adj + 'pants';
+}
+
+nameImprover('Natalie', 'Sparkly');</code></pre>
+					<ul>
+						<li>Defines a named function</li>
+						<li>Occur as standalone constructs</li>
+						<li>Cannot be nested in non-function blocks</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Function Expression</h3>
+<pre><code class="javascript">var nameImprover = function(name, adj) {
+	return 'Admiral ' + name + ' Mc' + adj + 'pants';
+}
+
+nameImprover('Natalie', 'Sparkly');</code></pre>
+					<ul>
+						<li>Defines a function as part of a larger expression syntax (usually a variable)</li>
+						<li>Functions can be named or anonymous
+							<ul>
+								<li>If named, the function name is not available outside of its own scope</li>
+							</ul>
+						</li>
+						<li>Cannot start with <code>function</code></li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Named Function Expression (NFE)</h3>
+<pre><code class="javascript">var nameImprover = function huzzah(name, adj) {
+	return 'Admiral ' + name + ' Mc' + adj + 'pants';
+};</code></pre>
+				</section>
+
+				<section>
+					<h3>Hoisting</h3>
+					<p>Let's say you have a function defined with a function declaration, and you try to call it in your code <em>before</em> it's defined in the code:</p>
+<pre><code class="javascript">saySomething('hello');
+
+function saySomething(text) {
+	console.log(text);
+}</code></pre>
+					<p>It works! The function gets <span class="blue">hoisted</span>, or moved to the top of its scope.</p>
+					<p>This is both good and bad. Good because it keeps our code from throwing errors. Bad because it allows us to develop bad habits in our code.</p>
+				</section>
+
+				<section>
+					<h3>Declaration vs Expression</h3>
+					<p>Generally, best practices favor using expressions over declarations for defining functions.</p>
+					<ul>
+						<li>Expressions help us to enforce good coding habits.</li>
+						<li>Plus, you can use expressions in places in your code where you can't use declarations - like inside an <code>if</code> statement.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Immediately-Invoked Function Expression</h3>
+					<p>We can also use a function expression to create a function that is invoked immediately - an IIFE.</p>
+<pre><code class="javascript">(function sayHello() {
+	alert("hello!");
+})();</code></pre>
+					<p>It starts with a <code>(</code> not with <code>function</code>.</p>
+				</section>
+
+				<section>
+					<h3>Arguments and IIFEs</h3>
+					<p>We can use the parentheses to pass arguments to an IIFE:</p>
+<pre><code class="javascript">(function sayHello(name) {
+	alert("hello, " + name + "!");
+})('Natalie');</code></pre>
+				</section>
+
+				<section>
+					<h3>Returning values from functions</h3>
+<pre><code class="javascript">var nameImprover = function(name, adj) {
+	return 'Admiral ' + name + ' Mc' + adj + 'pants';
+};</code></pre>
+<pre><code class="javascript">var nameLogger = function(name, adj) {
+	var newName = 'Admiral ' + name + ' Mc' + adj + 'pants';
+	console.log(newName);
+};</code></pre>
+				</section>
+
+				<section>
+					<h3>Function Arguments</h3>
+					<p>Inside a function, we can use the <code>arguments</code> keyword to fetch an array of all the arguments passed to a function.</p>
+<pre><code class="javascript">var addTwo = function(a, b) {
+	console.log(arguments); // logs [3,10]
+	return a + b;
+};
+
+console.log(addTwo(3, 10));</code></pre>
+				</section>
+
+				<section>
+					<h3><code>arguments</code></h3>
+<pre><code class="javascript">var addMany = function() {
+	console.log(arguments);
+	var sum = 0;
+	for (var i=0; i < arguments.length; i++) {
+		sum += arguments[i];
+	}
+	return sum;
+};
+
+console.log(addMany(3, 10, 57, 24));
+console.log(addMany(3, 10, 57, 24, 200, 300));</code></pre>
+				</section>
+
+				<section>
+					<h3>Setting default values for arguments</h3>
+<pre><code class="javascript">var nameLogger = function(name, adj) {
+	if(adj === undefined) adj = "Fancy";
+	var newName = 'Admiral ' + name + ' Mc' + adj + 'pants';
+	console.log(newName);
+};
+</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p><a href="files/exercise-functionobject.html" target="_new">Exercise instructions</a></p>
+				</section>
+
+				<section>
+					<h3><code>this</code></h3>
+					<p>Each time we create a function, JavaScript creates a keyword called <code>this</code>.</p>
+					<p>We use <code>this</code> similarly to a variable, but we can't change the value.</p>
+					<p>The keyword <code>this</code> refers to the object inside which the function is created.</p>
+					<p class="fragment">Huh?</p>
+					<p class="fragment">Let's look at some examples.</p>
+				</section>
+
+				<section>
+					<h3><code>this</code> inside methods of objects</h3>
+<pre><code class="javascript">var natalie = {
+	living: true,
+	age: 42,
+	getAge: function(){
+		return this.age; //this refers to natalie - the object that contains this function
+	}
+};
+
+console.log(natalie.getAge());</code></pre>
+				</section>
+
+				<section>
+					<h3><code>this</code> inside callback functions</h3>
+<pre><code class="xml"><button id="myBtn">A button!</button></code></pre>
+<pre><code class="javascript">var btn = document.getElementById('myBtn');
+
+btn.onclick = function(){
+	var text = this.innerHTML;
+
+	console.log(text);
+};</code></pre>
+				</section>
+
+				<section>
+					<h3>But wait...what's the object here?</h3>
+<pre><code class="javascript">function trySomething(){
+	console.log(this);
+}
+
+trySomething();</code></pre>
+				</section>
+
+				<section>
+					<h3>The <code>window</code> object</h3>
+					<p>A <code>window</code> object is created in the browser as soon as the JavaScript interpreter starts.</p>
+					<p>All globally-scoped functions and variables are actually properties and methods of the <code>window()</code> object.</p>
+				</section>
+
+				<section>
+					<h3>The <code>window</code> object</h3>
+<pre><code class="javascript">var num = 7;
+var name = "Natalie";
+
+console.log(window.num);
+console.log(window.name);
+
+function sayHello() {
+	console.log("Hello there!");
+}
+
+window.sayHello();</code></pre>
+				</section>
+
+				<section>
+					<h3>Functions are objects</h3>
+					<p>Don't forget! Functions in JavaScript are objects.</p>
+					<p>They have properties and methods just like any other object.</p>
+					<p>Let's take a look at a few methods.</p>
+				</section>
+
+				<section>
+					<h3><code>bind()</code></h3>
+					<p>Use the <code>bind()</code> method to explicity set the value of <code>this</code> without invoking the function immediately.</p>
+<pre><code class="javascript">var cat = {
+	name: 'Ollie',
+	age: 1,
+	callCat: function() {
+		console.log('Come here, ' + this.name);
+	}
+};
+
+var btn = document.getElementById('myBtn');
+
+btn.onclick = cat.callCat.bind(cat);</code></pre>
+				</section>
+
+				<section>
+					<h3><code>call()</code></h3>
+					<p>Invokes the function, allows you to explicity set the value of <code>this</code> and pass in arguments one by one</p>
+<pre><code class="javascript">var cat1 = {name: 'Mabel', age: 6 };
+var cat2 = {name: 'Ollie', age: 1 };
+
+function feedCat(food) {
+	console.log('Feeding some ' + food + ' to ' + this.name);
+}
+
+feedCat.call(cat1, 'salmon');
+feedCat.call(cat2, 'tuna');</code></pre>
+				</section>
+
+				<section>
+					<h3><code>apply()</code></h3>
+					<p>Invokes the function, allows you to explicity set the value of <code>this</code> and pass in an array of arguments.</p>
+<pre><code class="javascript">var cat1 = {name: 'Mabel', age: 6 };
+var cat2 = {name: 'Ollie', age: 1 };
+
+function feedCat(food) {
+	console.log('Feeding some ' + food + ' to ' + this.name);
+}
+
+feedCat.apply(cat1, ['salmon']);
+feedCat.apply(cat2, ['tuna']);</code></pre>
+				</section>
+
+				<section>
+					<h3>Closure</h3>
+					<p>A closure is an inner function that has access to the outer function's variables.</p>
+<pre><code class="javascript">function showRelationship(personName, catName) {
+	var intro = "Please meet ";
+	function makeSentence() {
+		return intro + catName + ' and his human, ' + personName;
+	}
+	return makeSentence();
+}
+console.log(showRelationship('Natalie', 'Ollie'));</code></pre>
+					<p>A closure has access to three scopes: its own scope, the enclosing function scope, and the global scope.</p>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<p>Questions about functions or closures before we move on?</p>
+				</section>
+
+				<!-- Advanced DOM -->
+				<section>
+					<h3>The DOM: Sample HTML</h3>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;Test Page&lt;/title&gt;
+	&lt;style&gt;
+		h1 {
+			color: red;
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;My Page&lt;/h1&gt;
+	&lt;p&gt;Hello World!&lt;/p&gt;
+	&lt;img src="http://placekitten.com/200/300" alt="cat"/&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+				</section>
+
+				<section>
+					<h3>The DOM: Sample Model</h3>
+					<img src="img/dom-tree.png" alt="Simple DOM Tree"/>
+				</section>
+
+				<section>
+					<h3>DOM</h3>
+					<ul>
+						<li>The DOM is a data structure called a <span class="blue">tree</span></li>
+						<li>Each point of data is called a <span class="blue">node</span></li>
+						<li>Each <span class="blue">node</span> can have a <span class="blue">parent</span>, <span class="blue">child</span>, and/or <span class="blue">sibling</span> nodes</li>
+						<li>The DOM is accessed by a global variable (object) called <code class="blue">document</code></li>
+						<li>We can also use dot notation to access methods and properties</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Identify</h3>
+					<img src="img/dom-tree.png" alt="Simple DOM Tree"/>
+					<ul>
+						<li>Parent/child</li>
+						<li>Siblings</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>How JavaScript sees the DOM</h3>
+<pre><code class="javascript">document = {
+	head: {
+		children: [ ... ] // contains all child nodes
+	},
+	body: {
+		children: [ ... ] // contains all child nodes
+		hasChildNodes: function() {
+			//returns true or false
+		}
+	},
+	getElementById: function(arg) {
+		//returns matching node list
+	}
+	...
+}</code></pre>
+					<p>Note: This is not complete! But gives an idea...</p>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>In the brower console, try these...</p>
+<pre><code class="javascript">document.body</code></pre>
+<pre><code class="javascript">document.body.children</code></pre>
+<pre><code class="javascript">document.querySelectorAll('p');</code></pre>
+					<p>&nbsp;</p>
+					<p>What other properties and methods do we know?</p>
+				</section>
+
+				<section>
+					<h3>Selecting an array of nodes</h3>
+					<p>By CSS selector:</p>
+<pre><code class="javascript">document.querySelectorAll('section h2');</code></pre>
+					<p>By tag name:</p>
+<pre><code class="javascript">document.getElementsByTagName('div');</code></pre>
+					<p>By class name:</p>
+<pre><code class="javascript">document.getElementsByClassName('upper');</code></pre>
+				</section>
+
+				<section>
+					<h3>Selecting a single node</h3>
+					<p>By ID:</p>
+<pre><code class="javascript">document.getElementById('kittenPic');</code></pre>
+					<p>By CSS selector:</p>
+<pre><code class="javascript">document.querySelectorAll('section h2')[0];</code></pre>
+<pre><code class="javascript">document.querySelector('section h2');</code></pre>
+					<p>By tag name:</p>
+<pre><code class="javascript">document.getElementsByTagName('div')[2];</code></pre>
+					<p>By class name:</p>
+<pre><code class="javascript">document.getElementsByClassName('upper')[1];</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Pair up with a buddy</p>
+					<p>Open <code>gdila.org</code> in your browser, then open the console.</p>
+					<p>One person will select a couple different elements on the page, and the other person has to use document methods to select them. You'll know you've got the right one when you hover over it and it highlights on the page (I'll demonstrate).</p>
+					<p>Take turns.</p>
+				</section>
+
+				<section>
+					<h3>Creating a new node</h3>
+					<p>Three step-process:</p>
+					<ol>
+						<li>
+							Create and store in a variable
+<pre><code class="javascript">var myNewElement = document.createElement('div');</code></pre>
+						</li>
+						<li>
+							Edit the node
+<pre><code class="javascript">myNewElement.innerHTML = 'I am the html inside of a <em>brand new</em> div tag!';
+myNewElement.className = 'new';</code></pre>
+						</li>
+						<li>
+							Insert the node
+<pre><code class="javascript">document.body.appendChild(myNewElement);
+</code></pre>
+						</li>
+					</ol>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Open the browser console. Create a new image. Give it an <code>src</code> attribute. Append it to the page.</p>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<p>Any questions on selecting or creating DOM nodes?</p>
+				</section>
+
+				<section>
+					<h3>Events</h3>
+					<dl class="align-left">
+						<dt>Event</dt>
+						<dd>Something that happens</dd>
+						<dt>Callback</dt>
+						<dd>Function that executes after the event happens</dd>
+						<dt>Event Listener</dt>
+						<dd>A method that binds a callback to an event</dd>
+					</dl>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Add this button to your HTML page:</p>
+<pre><code class="javascript">&lt;button id="testButton"&gt;Click me!&lt;/button&gt;</code></pre>
+					<p>&nbsp;</p>
+					<p>Now add an event listener to the button that will log a message to the console when the button is clicked.</p>
+					<p><strong>Bonus:</strong> If you finish early, try updating the callback so it logs the number of times the button has been clicked to the console.</p>
+				</section>
+
+				<section>
+					<h3>Event Listeners</h3>
+					<p>So far, we have only used specific event handler properties to associate a function with an event.</p>
+					<p>These properties have a limitation: you can only assign one callback per event.</p>
+<pre><code class="javascript">var btn = document.getElementById('testButton');
+btn.onclick = function() { console.log('did stuff #1'); };
+btn.onclick = function() { console.log('did stuff #2'); };</code></pre>
+					<p>If you click the button, you'll see that only <code>did stuff #2</code> is logged to the console. We're assigning properties to an object, and the second one simply overwrites the first.</p>
+				</section>
+
+				<section>
+					<h3>The <code>addEventListener()</code> method</h3>
+					<p>If we want to get fancy (or just build more stable and flexible code), we can use the <code>addEventListener()</code> method instead.</p>
+<pre><code class="javascript">element.addEventListener(event, callback);</code></pre>
+				</section>
+
+				<section>
+					<h3><code>addEventListener()</code> with an anonymous function</h3>
+<pre><code class="javascript">var myButton = document.getElementById('testButton');
+
+myButton.addEventListener('click', function() {
+	console.log('button was clicked!');
+});</code></pre>
+					<p>&nbsp;</p>
+					<p>This works, but we can't remove this callback later on because we don't have a way to call it - it's anonymous and has no name.</p>
+				</section>
+
+				<section>
+					<h3><code>addEventListener()</code> with a named function</h3>
+<pre><code class="javascript">var myButton = document.getElementById('testButton');
+
+//store and define the function
+var myCallback = function() {
+	console.log('button clicked!');
+};
+
+myButton.addEventListener('click', myCallback);</code></pre>
+					<p>&nbsp;</p>
+					<p>Now, we can remove that event listener later on:</p>
+<pre><code class="javascript">myButton.removeEventListener('click', myCallback);
+</code></pre>
+				</section>
+
+				<section>
+					<h3>What about arguments?</h3>
+					<p>Arguments get passed to the callback:</p>
+<pre><code class="xml"><a href="http://girldevelopit.com" id="testLink">GDI</a></code></pre>
+<pre><code class="javascript">var myLink = document.getElementById('testLink');
+
+//store and define the function
+var myCallback = function(e) {
+	e.preventDefault();
+	console.log('Not going there!');
+};
+
+//no argument needed for binding the event
+myLink.addEventListener('click', myCallback);</code></pre>
+				</section>
+
+				<section>
+					<h3>Event Bubbling</h3>
+					<p>The DOM is a series of objects, nested inside one another: a paragraph inside a div inside the body inside the document, for example.</p>
+					<p>When an event is triggered on a nested element, it's also triggered on the parent(s), all the way up to the <code>document</code> object.</p>
+					<p class="fragment">Really?</p>
+				</section>
+
+				<section>
+					<h3>Event Bubbling</h3>
+<pre><code class="xml"><div id="parent">
+	<p>This is a paragraph</p>
+	<button>I'm a button!</button>
+</div></code></pre>
+<pre><code class="javascript">var div = document.getElementById('parent');
+
+var showMessage = function(e) {
+	console.log('The div was clicked!');
+}
+
+div.addEventListener('click', showMessage);</code></pre>
+					<p>The order is called a bubbling order, because an event bubbles from the innermost element up through parents, like a bubble of air in the water.</p>
+				</section>
+
+				<section>
+					<h3>Event Target</h3>
+					<p>The deepest element that triggered the event is called the <code>target</code>. And <code>this</code> is the element the event has bubbled to - the one that triggers the event handler.</p>
+					<p>The <code>target</code> is stored as a property of the event object.</p>
+<pre><code class="javascript">var div = document.getElementById('parent');
+
+var showMessage = function(e) {
+	console.log('You clicked on ' + e.target.nodeName);
+	console.log('The event was handled on ' + this.nodeName);
+}
+
+div.addEventListener('click', showMessage);</code></pre>
+				</section>
+
+				<section>
+					<h3><code>stopPropagation()</code></h3>
+					<p>You can stop an event from bubbling up the DOM with the <code>stopPropagation</code> method.</p>
+<pre><code class="javascript">var div = document.getElementById('parent');
+var btn = document.querySelector('#parent button');
+
+var showMessage = function(e) {
+	console.log('You clicked on ' + e.target.nodeName);
+	console.log('The event was handled on ' + this.nodeName);
+}
+
+var showAnotherMessage = function(e) {
+	e.stopPropagation();
+	console.log('The ' + e.target.nodeName + ' was clicked and the event didn\'t bubble.');
+};
+
+div.addEventListener('click', showMessage);
+btn.addEventListener('click', showAnotherMessage);</code></pre>
+				</section>
+
+				<section>
+					<h3>Event Delegation</h3>
+					<p>We can take advantage of event bubbling in our code.</p>
+					<p>Let's start with this HTML:</p>
+<pre><code class="xml"><ul id="awesomeCats">
+	<li><strong>Maru</strong> - he likes boxes!</li>
+	<li><strong>Hana</strong> - she love Maru</li>
+	<li><strong>Lil Bub</strong> - she's a trooper</li>
+	<li><strong>Grumpy Cat</strong> - she's the grumpiest</li>
+</ul>
+</code></pre>
+					<p>We want to toggle a highlight on each list item when it's clicked.</p>
+				</section>
+
+				<section>
+					<h3>Event Delegation</h3>
+					<p>We could add an event listener to each list item...or we could just listen for an event on the list:</p>
+<pre><code class="javascript">var list = document.getElementById('awesomeCats');
+var listClicking = function(e) {
+	var el = e.target;
+	while (el != this) {
+		if (el && el.nodeName == 'LI') {
+			toggleHighlight(el);
+		}
+		el = el.parentNode;
+	}
+};
+var toggleHighlight = function(el) {
+	var color = el.style.backgroundColor;
+	if (color) { el.style.backgroundColor = ''; }
+	else { el.style.backgroundColor = 'pink'; }
+};
+list.addEventListener('click', listClicking);</code></pre>
+				</section>
+
+				<section>
+					<h3>Advantages of using event delegation</h3>
+					<p>The addEventListener() method only fires when the page is first loaded.</p>
+					<p>If we change the page later - e.g., we dynamically add more items to the list - those new items won't have event listeners. We would have to re-add event listeners to any new items created on the page.</p>
+					<p>Or we can use event delegation instead - the container element stays on the page no matter what, and we can listen for events there.</p>
+				</section>
+
+				<section>
+					<h3>Things to be aware of</h3>
+					<p>Not all events bubble - <a href="https://en.wikipedia.org/wiki/DOM_events#Events">here's a nice list of events</a> that shows which ones bubble and which do not.</p>
+					<p>If you're not careful, you can put a lot of load on the browser - be sure to think about how often an event might be fired vs how often you'd want to trigger a callback function in response.</p>
+				</section>
+
+				<section>
+					<h3>Let's Develop It</h3>
+					<p>Given this HTML:</p>
+<pre><code class="xml"><div id="content">
+	<p>You can learn about about <a href="https://en.wikipedia.org/wiki/Lion">lions</a>, <a href="https://en.wikipedia.org/wiki/Tiger">tigers</a>, or <a href="https://en.wikipedia.org/wiki/Bear">bears</a>.</p>
+	<p>Or you could just relax and <a href="https://www.youtube.com/watch?v=QRZ8U34D-Jk">watch a video.</a></p>
+</div></code></pre>
+					<p>Use event delegation to display an alert each time a user clicks a link that asks them if they're sure.</p>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<p>Questions on event bubbling and delgation?</p>
+				</section>
+
+			</div>
+			<footer>
+				<div class="copyright">
+					JavaScript 201 -- Los Angeles --
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /></a>
+				</div>
+			</footer>
+		</div>
+
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+						Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+										{ src: 'plugin/accessibility-helper/js/accessibility-helper.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
