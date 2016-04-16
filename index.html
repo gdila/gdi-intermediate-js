@@ -783,7 +783,7 @@ window.sayHello();</code></pre>
 
 var btn = document.getElementById('myBtn');
 
-btn.addEventListener('click', cat.callCat.bind(cat));</code></pre>
+btn.onclick = cat.callCat.bind(cat);</code></pre>
 				</section>
 
 				<section>
@@ -995,8 +995,8 @@ myNewElement.className = 'new';</code></pre>
 
 				<section>
 					<h3>Event Listeners</h3>
-					<p>So far, we have only used specific event handler methods as event listeners.</p>
-					<p>These specific event handlers have a limitation: you can only assign one callback per event.</p>
+					<p>So far, we have only used specific event handler properties to associate a function with an event.</p>
+					<p>These properties have a limitation: you can only assign one callback per event.</p>
 <pre><code class="javascript">var btn = document.getElementById('testButton');
 btn.onclick = function() { console.log('did stuff #1'); };
 btn.onclick = function() { console.log('did stuff #2'); };</code></pre>
@@ -1032,13 +1032,14 @@ var myCallback = function() {
 myButton.addEventListener('click', myCallback);</code></pre>
 					<p>&nbsp;</p>
 					<p>Now, we can remove that event listener later on:</p>
-<pre><code class="javascript">myButton.removeEventListener('click', myCallback)
+<pre><code class="javascript">myButton.removeEventListener('click', myCallback);
 </code></pre>
 				</section>
 
 				<section>
 					<h3>What about arguments?</h3>
 					<p>Arguments get passed to the callback:</p>
+<pre><code class="xml"><a href="http://girldevelopit.com" id="testLink">GDI</a></code></pre>
 <pre><code class="javascript">var myLink = document.getElementById('testLink');
 
 //store and define the function
@@ -1126,9 +1127,8 @@ btn.addEventListener('click', showAnotherMessage);</code></pre>
 					<h3>Event Delegation</h3>
 					<p>We could add an event listener to each list item...or we could just listen for an event on the list:</p>
 <pre><code class="javascript">var list = document.getElementById('awesomeCats');
-
 var listClicking = function(e) {
-	var el = event.target;
+	var el = e.target;
 	while (el != this) {
 		if (el && el.nodeName == 'LI') {
 			toggleHighlight(el);
@@ -1136,20 +1136,18 @@ var listClicking = function(e) {
 		el = el.parentNode;
 	}
 };
-
 var toggleHighlight = function(el) {
 	var color = el.style.backgroundColor;
 	if (color) { el.style.backgroundColor = ''; }
 	else { el.style.backgroundColor = 'pink'; }
 };
-
 list.addEventListener('click', listClicking);</code></pre>
 				</section>
 
 				<section>
 					<h3>Advantages of using event delegation</h3>
-					<p>Event listeners are only added to elements when the page is first loaded.</p>
-					<p>If we change the page later - for example, we add more items to the list with ajax - those new items won't have event listeners. We would have to re-add event listeners to any new items created on the page.</p>
+					<p>The addEventListener() method only fires when the page is first loaded.</p>
+					<p>If we change the page later - e.g., we dynamically add more items to the list - those new items won't have event listeners. We would have to re-add event listeners to any new items created on the page.</p>
 					<p>Or we can use event delegation instead - the container element stays on the page no matter what, and we can listen for events there.</p>
 				</section>
 
@@ -1157,11 +1155,6 @@ list.addEventListener('click', listClicking);</code></pre>
 					<h3>Things to be aware of</h3>
 					<p>Not all events bubble - <a href="https://en.wikipedia.org/wiki/DOM_events#Events">here's a nice list of events</a> that shows which ones bubble and which do not.</p>
 					<p>If you're not careful, you can put a lot of load on the browser - be sure to think about how often an event might be fired vs how often you'd want to trigger a callback function in response.</p>
-				</section>
-
-				<section>
-					<h2>Questions?</h2>
-					<p>Questions on event bubbling and delgation?</p>
 				</section>
 
 				<section>
@@ -1174,12 +1167,46 @@ list.addEventListener('click', listClicking);</code></pre>
 					<p>Use event delegation to display an alert each time a user clicks a link that asks them if they're sure.</p>
 				</section>
 
+				<section>
+					<h2>Questions?</h2>
+					<p>Questions on event bubbling and delgation?</p>
+				</section>
+
 				<!-- OOP with JavaScript -->
 				<section>
 					<h3>Object-Oriented Programming (OOP)</h3>
-					<p>Let's use a book as an example of an object.</p>
+					<div class="fragment">
+						<p>&hellip;in JavaScript is really</p>
+						<h3>&ldquo;Object-oriented&rdquo; JavaScript</h3>
+						<p>JavaScript is not a strict OO language like Java, but we can still use it in an object-oriented way.</p>
+						<p>Future versions of JavaScript are already in the works with more OO features built into the language.</p>
+					</div>
+				</section>
+
+				<section>
+					<h3>JavaScript Object Prototypes</h3>
+					<p>Every object in JavaScript has a prototype.</p>
+					<p>All JavaScript objects inherit their properties and their methods from their prototype.</p>
+					<p>This is called <span class="blue">prototypal inheritance</span></p>
+				</section>
+
+				<section>
+					<h3>Object Prototypes</h3>
+					<p>We know that when we create a new array:</p>
+					<ul>
+						<li>It will have a <code>length</code> property</li>
+						<li>It will have a <code>map()</code> method</li>
+						<li>It will have a <code>filter()</code> method</li>
+						<li>It will have a <code>join()</code> method</li>
+					</ul>
+					<p>An array inherits these properties and methods from an <code>Array</code> prototype that defines what an array is (properties) and what it can do (methods)</p>
+				</section>
+
+				<section>
+					<h3>Object Prototype Example</h3>
+					<p>Let's use a book as an example of an object prototype.</p>
 					<div style="width:50%;margin-left:auto;margin-right:auto;border:5px solid #333;padding:0.5em;">
-						<h4>Book</h4>
+						<h4>Book prototype</h4>
 						<p>Properties:</p>
 						<ul>
 							<li>title</li>
@@ -1195,8 +1222,8 @@ list.addEventListener('click', listClicking);</code></pre>
 				</section>
 
 				<section>
-					<h3>Object Instances</h3>
-					<p>There can be many <code class='blue'>instances</code> of objects:</p>
+					<h3>Object Prototype Instances</h3>
+					<p>There can be many <code class='blue'>instances</code> of object prototypes:</p>
 					<div style="overflow:hidden;">
 						<div style="width:33%;float:left;">
 							<div style="margin:0 0.5em;padding:0.5em;border:5px solid #333;">
@@ -1220,19 +1247,19 @@ list.addEventListener('click', listClicking);</code></pre>
 							</div>
 						</div>
 					</div>
-					<p>Each is an <span class="blue">instance</span> of the <code>book</code> object.</p>
+					<p>Each is an <span class="blue">instance</span> of the <code>book</code> object prototype.</p>
 				</section>
 
 				<section>
-					<h3>Defining an object in JavaScript</h3>
-					<p>First, define a constructor function with the object's properties</p>
+					<h3>Defining an object prototype</h3>
+					<p>First, define a <span class="blue">constructor</span> function with the object prototype's properties:</p>
 <pre><code class="javascript">function Book(title, author, numPages) {
 	this.title = title;
 	this.author = author;
 	this.numPages = numPages;
 	this.currentPage = 0;
 }</code></pre>
-						<p>Define methods for the object</p>
+						<p>Then define methods for the object prototype:</p>
 <pre><code class="javascript">Book.prototype.read = function() {
 	this.currentPage = this.numPages;
 	console.log("You read " + this.numPages + " pages!");
@@ -1245,6 +1272,7 @@ list.addEventListener('click', listClicking);</code></pre>
 <pre><code class="javascript">var book = new Book("Robot Dreams", "Isaac Asimov", 320);
 
 book.read(); // Will log "You read 320 pages!" to the console</code></pre>
+				<p>This creates a new object that inherits the properties and methods from the prototype that we defined.</p>
 				</section>
 
 				<section>
@@ -1256,6 +1284,17 @@ book.read(); // Will log "You read 320 pages!" to the console</code></pre>
 						<li>Executes the constructor function</li>
 						<li>Returns the newly created object</li>
 					</ol>
+				</section>
+
+				<section>
+					<h3>Adding new properties to objects</h3>
+					<p>Let's say we've created two book objects using the Book prototype we set up earlier:</p>
+<pre><code class="javascript">var myBook1 = new Book('The Boxcar Children', 'Gertrude Chandler Warner', 160);
+
+var myBook2 = new Book('Around the World in 80 Days', 'Jules Verne', 315);</code></pre>
+					<p>Let's add a <code>series</code> property to the first book:</p>
+<pre><code class="javascript">myBook1.series = 'The Boxcar Children';</code></pre>
+					<p>This new property gets added to <span class="green">The Boxcar Children</span>, but not to <span class="green">Around the World in 80 days</span>, and not to any other new objects created from the Book prototype.</p>
 				</section>
 
 				<section>
@@ -1382,12 +1421,6 @@ var book = new Book({
 					<p>Change the <code>Video</code> constructor function to accept an object literal instead of multiple arguments.</p>
 					<p>Define a default value for every property.</p>
 					<p>Finally, instantiate a new <code>Video</code> and call the <code>watch()</code> method on it.</p>
-				</section>
-
-				<section>
-					<h3>"Object-oriented" JavaScript</h3>
-					<p>JavaScript is not a strict OO language like Java, but it can still be used in an object-oriented way.</p>
-					<p>Future versions of JavaScript are already in the works with more OO features built into the language.</p>
 				</section>
 
 				<!-- AJAX and JSON -->
