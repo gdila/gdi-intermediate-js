@@ -1247,28 +1247,28 @@ list.addEventListener('click', listClicking);</code></pre>
 							</div>
 						</div>
 					</div>
-					<p>Each is an <span class="blue">instance</span> of the <code>book</code> object prototype.</p>
+					<p>Each is an <span class="blue">instance</span> of the <code>Book</code> object prototype.</p>
 				</section>
 
 				<section>
 					<h3>Defining an object prototype</h3>
-					<p>First, define a <span class="blue">constructor</span> function with the object prototype's properties:</p>
+					<p>Define a <span class="blue">constructor</span> function with the object prototype's properties and methods:</p>
 <pre><code class="javascript">function Book(title, author, numPages) {
 	this.title = title;
 	this.author = author;
 	this.numPages = numPages;
 	this.currentPage = 0;
+	this.read = function() {
+		this.currentPage = this.numPages;
+		console.log("You read " + this.numPages + " pages!");
+	};
 }</code></pre>
-						<p>Then define methods for the object prototype:</p>
-<pre><code class="javascript">Book.prototype.read = function() {
-	this.currentPage = this.numPages;
-	console.log("You read " + this.numPages + " pages!");
-}</code></pre>
+					<p>Conventionally, object prototype names are capitalized.</p>
 				</section>
 
 				<section>
 					<h3>Instantiating an object</h3>
-					<p>Then, <span class="blue">instantiate</span> a new object</p>
+					<p>Now that we have a prototype, we can <span class="blue">instantiate</span> a new object:</p>
 <pre><code class="javascript">var book = new Book("Robot Dreams", "Isaac Asimov", 320);
 
 book.read(); // Will log "You read 320 pages!" to the console</code></pre>
@@ -1298,8 +1298,19 @@ var myBook2 = new Book('Around the World in 80 Days', 'Jules Verne', 315);</code
 				</section>
 
 				<section>
+					<h3>Adding new properties and methods to object prototypes</h3>
+					<p>We can use the prototype property to add new properties and methods to the object prototype:</p>
+					<p>Adding a property:</p>
+<pre><code class="javascript">Book.prototype.series = '';</code></pre>
+					<p>Adding a method:</p>
+<pre><code class="javascript">Book.prototype.buy = function(){
+	console.log('You bought ' + this.name);
+}</code></pre>
+				</section>
+
+				<section>
 					<h3>Let's Develop It!</h3>
-					<p>Create a <code>Video</code> object. The <code>Video</code> object should have the following properties and methods:</p>
+					<p>Create a <code>Video</code> object prototype. The <code>Video</code> object prototype should have the following properties and methods:</p>
 					<ul>
 						<li><code>title</code> - a string</li>
 						<li><code>uploader</code> - a string, the person who uploaded the video</li>
@@ -1312,7 +1323,7 @@ var myBook2 = new Book('Around the World in 80 Days', 'Jules Verne', 315);</code
 
 				<section>
 					<h3>Object-oriented programming</h3>
-					<p>Objects can inherit properties and methods from other objects. And objects can implement parent methods in different ways.</p>
+					<p>Object prototypes can inherit properties and methods from other object prototypes.</p>
 					<div style="overflow:hidden;">
 						<div style="width:33%;float:left;">
 							<div style="margin:0 0.5em;padding:0.5em;border:5px solid #333;">
@@ -1350,15 +1361,15 @@ var myBook2 = new Book('Around the World in 80 Days', 'Jules Verne', 315);</code
 				</section>
 
 				<section>
-					<h3>Extending objects</h3>
+					<h3>Extending object prototypes</h3>
 					<p>First, define a constructor function</p>
 <pre><code class="javascript">function PaperBack(title, author, numPages, cover) {
 	Book.call(this, title, author, numPages);
 	this.cover = cover;
 }</code></pre>
-					<p>Extend the Book object</p>
+					<p>Extend the Book object prototype</p>
 <pre><code class="javascript">PaperBack.prototype = Object.create(Book.prototype);</code></pre>
-					<p>Define a new method on this object</p>
+					<p>Define a new method on this object prototype</p>
 <pre><code class="javascript">PaperBack.prototype.burn = function() {
 	console.log("Omg, you burnt all " + this.numPages + " pages");
 	this.numPages = 0;
@@ -1377,9 +1388,9 @@ paperback.burn();</code></pre>
 
 				<section>
 					<h3>Let's Develop It!</h3>
-					<p>Building on the exercise from last time, create a new object <code>MusicVideo</code> that extends <code>Video</code>. The constructor should also take in an <code>artist</code> property.</p>
-					<p>Instantiate a new <code>MusicVideo</code> and call the <code>watch()</code> method on it.</p>
-					<p>Add a new method to the <code>MusicVideo</code> object called <code>rockOut()</code> that logs a message to the console, e.g. "You just rocked out to Shake it Off by Taylor Swift!"</p>
+					<p>Building on the exercise from last time, create a new object prototype <code>MusicVideo</code> that extends <code>Video</code>. The constructor should also take in an <code>artist</code> property.</p>
+					<p>Instantiate a new <code>MusicVideo</code> object and call the <code>watch()</code> method on it.</p>
+					<p>Add a new method to the <code>MusicVideo</code> object prototype called <code>rockOut()</code> that logs a message to the console, e.g. "You just rocked out to Shake it Off by Taylor Swift!"</p>
 				</section>
 
 				<section>
@@ -1420,7 +1431,12 @@ var book = new Book({
 					<p>Building on the exercise from last time, comment out the <code>MusicVideo</code> code.</p>
 					<p>Change the <code>Video</code> constructor function to accept an object literal instead of multiple arguments.</p>
 					<p>Define a default value for every property.</p>
-					<p>Finally, instantiate a new <code>Video</code> and call the <code>watch()</code> method on it.</p>
+					<p>Finally, instantiate a new <code>Video</code> object and call the <code>watch()</code> method on it.</p>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<p>Any questions on object prototypes or inheritance?</p>
 				</section>
 
 				<!-- AJAX and JSON -->
