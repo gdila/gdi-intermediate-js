@@ -48,6 +48,16 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+				<!-- Opening -->
+				<section>
+					<img src="img/circle-gdi-logo.png" alt="GDI Logo" class="noborder"/>
+					<h1>JavaScript 201</h1>
+					<h2>Class 2: Functions, DOM, and Events</h2>
+					<p>
+						<small>View the slides at <a href ="https://github.com/gdila/intermediate-js">gdila.org/js201</a>.</small>
+					</p>
+				</section>
+
 				<!-- Functions -->
 				<section>
 					<h3>Functions</h3>
@@ -103,6 +113,28 @@ nameImprover('Natalie', 'Sparkly');</code></pre>
 <pre><code class="javascript">var nameImprover = function huzzah(name, adj) {
 	return 'Admiral ' + name + ' Mc' + adj + 'pants';
 };</code></pre>
+					<p>The function name is scoped to the defined function.</p>
+				</section>
+
+				<section>
+					<h3>Recursion</h3>
+					<p>NFE is handy for recursive functions, or functions that call themselves:</p>
+<pre><code class="javascript">var factorial = function factorialCalc(num) {
+	// If the number is less than 0, reject it.
+	if (num < 0) {
+		return -1;
+	}
+	// If the number is 0, its factorial is 1.
+	else if (num == 0) {
+		return 1;
+	}
+	// Otherwise, call this recursive procedure again.
+	else {
+		return (num * factorialCalc(num - 1));
+	}
+}
+
+console.log(factorial(3));</code></pre>
 				</section>
 
 				<section>
@@ -141,17 +173,6 @@ function saySomething(text) {
 <pre><code class="javascript">(function sayHello(name) {
 	alert("hello, " + name + "!");
 })('Natalie');</code></pre>
-				</section>
-
-				<section>
-					<h3>Returning values from functions</h3>
-<pre><code class="javascript">var nameImprover = function(name, adj) {
-	return 'Admiral ' + name + ' Mc' + adj + 'pants';
-};</code></pre>
-<pre><code class="javascript">var nameLogger = function(name, adj) {
-	var newName = 'Admiral ' + name + ' Mc' + adj + 'pants';
-	console.log(newName);
-};</code></pre>
 				</section>
 
 				<section>
@@ -236,6 +257,10 @@ btn.onclick = function(){
 }
 
 trySomething();</code></pre>
+				</section>
+
+				<section>
+					<img src="img/matrix.gif" height="756" width="1024" alt="">
 				</section>
 
 				<section>
@@ -459,11 +484,6 @@ myNewElement.className = 'new';</code></pre>
 				</section>
 
 				<section>
-					<h3>Let's Develop It!</h3>
-					<p>Open the browser console. Create a new image. Give it an <code>src</code> attribute. Append it to the page.</p>
-				</section>
-
-				<section>
 					<h2>Questions?</h2>
 					<p>Any questions on selecting or creating DOM nodes?</p>
 				</section>
@@ -478,15 +498,6 @@ myNewElement.className = 'new';</code></pre>
 						<dt>Event Listener</dt>
 						<dd>A method that binds a callback to an event</dd>
 					</dl>
-				</section>
-
-				<section>
-					<h3>Let's Develop It!</h3>
-					<p>Add this button to your HTML page:</p>
-<pre><code class="javascript">&lt;button id="testButton"&gt;Click me!&lt;/button&gt;</code></pre>
-					<p>&nbsp;</p>
-					<p>Now add an event listener to the button that will log a message to the console when the button is clicked.</p>
-					<p><strong>Bonus:</strong> If you finish early, try updating the callback so it logs the number of times the button has been clicked to the console.</p>
 				</section>
 
 				<section>
@@ -546,6 +557,15 @@ var myCallback = function(e) {
 
 //no argument needed for binding the event
 myLink.addEventListener('click', myCallback);</code></pre>
+				</section>
+
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Add this button to your HTML page:</p>
+<pre><code class="javascript">&lt;button id="messageButton"&gt;Show a message&lt;/button&gt;</code></pre>
+					<p>&nbsp;</p>
+					<p>Now add an event listener to the button that will log a message to the console when the button is clicked.</p>
+					<p><strong>Bonus:</strong> If you finish early, try updating the callback so it logs the number of times the button has been clicked to the console.</p>
 				</section>
 
 				<section>
@@ -666,6 +686,17 @@ list.addEventListener('click', listClicking);</code></pre>
 				<section>
 					<h2>Questions?</h2>
 					<p>Questions on event bubbling and delgation?</p>
+				</section>
+
+				<section>
+					<h2>Homework</h2>
+					<p>Two things for you to do before next week's class:</p>
+					<ol>
+						<li>Learn how to set up a <a href="files/exercise-localserver.html" target="_new">local server</a>.</li>
+						<li>Work through the homework problems.</li>
+					</ol>
+					<p>&nbsp;</p>
+					<p>If you have questions, post in our <a href="http://facebook.com/groups/gdila">Facebook group</a>.</p>
 				</section>
 
 			</div>
