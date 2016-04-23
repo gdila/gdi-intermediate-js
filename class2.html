@@ -150,6 +150,22 @@ function saySomething(text) {
 				</section>
 
 				<section>
+					<h3>Function Expressions</h3>
+					<p>Function expressions do <em>not</em> get hoisted. So this won't work:</p>
+<pre><code class="javascript">saySomething('hello');
+
+var saySomething = function(text) {
+	console.log(text);
+}</code></pre>
+					<p>You must define the function expression before it's called.</p>
+<pre><code class="javascript">var saySomething = function(text) {
+	console.log(text);
+}
+
+saySomething('hello');</code></pre>
+				</section>
+
+				<section>
 					<h3>Declaration vs Expression</h3>
 					<p>Generally, best practices favor using expressions over declarations for defining functions.</p>
 					<ul>
@@ -231,11 +247,12 @@ console.log(addMany(3, 10, 57, 24, 200, 300));</code></pre>
 	living: true,
 	age: 42,
 	getAge: function(){
-		return this.age; //this refers to natalie - the object that contains this function
+		return this.age;
 	}
 };
 
 console.log(natalie.getAge());</code></pre>
+					<p>Here our function is a method inside an object - so <code>this</code> refers to the object, <code>natalie</code></p>
 				</section>
 
 				<section>
@@ -248,6 +265,7 @@ btn.onclick = function(){
 
 	console.log(text);
 };</code></pre>
+					<p>A callback function is connected to a DOM element through an event handler - so <code>this</code> refers to the DOM element that fired the event - in this case, the <code>button</code> that was clicked.</p>
 				</section>
 
 				<section>
@@ -336,22 +354,22 @@ feedCat.apply(cat2, ['tuna']);</code></pre>
 				</section>
 
 				<section>
-					<h3>Closure</h3>
-					<p>A closure is an inner function that has access to the outer function's variables.</p>
+					<h3>Inner functions</h3>
+					<p>Functions can be nested inside one another:</p>
 <pre><code class="javascript">function showRelationship(personName, catName) {
 	var intro = "Please meet ";
 	function makeSentence() {
 		return intro + catName + ' and his human, ' + personName;
 	}
-	return makeSentence();
+	console.log(makeSentence());
 }
-console.log(showRelationship('Natalie', 'Ollie'));</code></pre>
-					<p>A closure has access to three scopes: its own scope, the enclosing function scope, and the global scope.</p>
+showRelationship('Natalie', 'Ollie');</code></pre>
+					<p>An inner function has access to three scopes: its own scope, the enclosing function scope, and the global scope.</p>
 				</section>
 
 				<section>
 					<h2>Questions?</h2>
-					<p>Questions about functions or closures before we move on?</p>
+					<p>Questions about functions before we move on?</p>
 				</section>
 
 				<!-- Advanced DOM -->
