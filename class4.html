@@ -135,7 +135,7 @@ body.appendChild(p);</code></pre>
 
 				<section>
 					<h3>Getting ready to communicate</h3>
-					<p>Now that we've created an instance of the XHR object, it needs to be prepped for communition. That requires three things:</p>
+					<p>Now that we've created an instance of the XHR object, it needs to be prepped for communication. That requires three things:</p>
 					<ol>
 						<li>The <code>readystatechange</code> event handler</li>
 						<li>The <code>open()</code> method</li>
@@ -178,6 +178,20 @@ if(request) {
 						</ol>
 					</div>
 				</section>
+
+				<section>
+					<h3>The <code>open()</code> method</h3>
+<pre><code class="javascript">var request = new XMLHttpRequest();
+
+if(request) {
+	request.addEventListener('readystatechange', function(){
+		console.log(request.readyState);
+	});
+	request.open('GET', 'me.json', true);
+}</code></pre>
+					<p>Here's a <a href="files/me.json">me.json</a> file you can include in your project to call.</p>
+				</section>
+
 
 				<section>
 					<h3>Request types: <code>GET</code> and <code>POST</code></h3>
@@ -496,7 +510,8 @@ if (request) {
 
 				<section>
 					<h3>Survey</h3>
-					<p>Survey info and links</p>
+					<p>We strive to make every class better than the last. We rely on your honest feedback to make our classes better. Please take a moment to complete the <a href="https://docs.google.com/forms/d/1cQEyiye9DQuIcjR4IAAtzNdKSOs_kfs0NMVegkfaol0/viewform">survey</a> for this class.</p>
+					<p><a href="https://docs.google.com/forms/d/1cQEyiye9DQuIcjR4IAAtzNdKSOs_kfs0NMVegkfaol0/viewform">Take the survey</a></p>
 				</section>
 
 				<section>
