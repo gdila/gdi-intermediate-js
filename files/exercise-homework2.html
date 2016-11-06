@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GDI JavaScript 201 Exercise</title>
+	<link rel="stylesheet" href="exercises.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		// Powers show/hide buttons.
+		$( document ).ready(function() {
+			$("div.codebox").hide();
+		});
+		function showSolution(num) {
+			$("div#example" + num + "Code").toggle();
+		}
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<h1>Intermediate JavaScript: Homework Week 2</h1>
+		</div>
+		<div id="main">
+			<p>Welcome! This is the homework to accompany Girl Develop It LA's JavaScript 201: Intermediate JavaScript class. You can always reference <a href="http://gdila.org/js201">the slides</a> if you get stuck. Commit to spending <em>at least 20 minutes</em> trying to figure out a problem before you peek at the answer. It helps you learn!</p>
+
+			<h2>Froyo Machine</h2>
+			<p>Your task is to create a froyo machine! Go through these steps:</p>
+			<ol>
+				<li>Download and unzip <a href="froyostarter.zip">froyostarter.zip</a>. Open in your favorite text editor and in the browser.</li>
+				<li>In <code>index.html</code>, we have given you a power button, and three flavor buttons on the machine. When the user presses the power button, the <code>click</code> event will fire for that element. We have started writing a callback function for you. Find the <code>togglePower()</code> callback function.</li>
+				<li>Inside the <code>togglePower()</code> callback, bind an event listener to each flavor button on the machine that listens for the <code>click</code> event.</li>
+				<li>Next, set <code>isOn</code> to true inside of the same callback function.</li>
+				<li>Each button on the machine should do something. Use the included froyo images: <code>img/chocolate.jpg</code>, <code>img/strawberry.jpg</code>, and <code>img/vanilla.jpg</code> to create an <code>&lt;img&gt;</code> tag, add an <code>src</code> attribute, and append it to the <code>dispenser</code> inside the machine.</li>
+				<li>In the browser, check that you can turn the machine on, and that your images get appended to the dispenser as expected.</li>
+				<li>Now, we also want to be able to turn the machine off. Add logic so that events are bound to the flavor buttons when the machine turns on and are unbound when the machine turns off. We don't want the flavor button to do anything if the machine is off. Also make sure that the <code>isOn</code> variable is changing to accurately reflect the state of the machine.</li>
+			</ol>
+			<button onclick="showSolution(3)">Show/Hide Solution</button>
+			<div class="codebox" id="example3Code" style="display:none;">
+<pre><code>/* The froyo machine is off until it's turned on. */
+var isOn = false;
+
+/* Select the power button */
+var powerButton = document.querySelector('#power img');
+
+/* Select the flavor buttons */
+var vanillaButton = document.getElementById('vanilla');
+var strawberryButton = document.getElementById('strawberry');
+var chocolateButton = document.getElementById('chocolate');
+
+/* Select the dispenser */
+var dispenser = document.getElementById('dispenser');
+
+/* A callback function to turn the froyo machine on and off */
+var togglePower = function(e) {
+	if (!isOn) {
+		isOn = true;
+		this.src = 'img/power_on.png';
+		vanillaButton.addEventListener('click', vanillaMaker);
+		strawberryButton.addEventListener('click', strawberryMaker);
+		chocolateButton.addEventListener('click', chocolateMaker);
+	} else {
+		isOn = false;
+		this.src = 'img/power.png';
+		vanillaButton.removeEventListener('click', vanillaMaker);
+		strawberryButton.removeEventListener('click', strawberryMaker);
+		chocolateButton.removeEventListener('click', chocolateMaker);
+	}
+}
+
+/* A callback function to make vanilla froyo */
+var vanillaMaker = function(e) {
+	var img = document.createElement('img');
+	img.src = 'img/vanilla.jpg';
+	dispenser.innerHTML = '';
+	dispenser.appendChild(img);
+};
+
+/* A callback function to make strawberry froyo */
+var strawberryMaker = function(e) {
+	var img = document.createElement('img');
+	img.src = 'img/strawberry.jpg';
+	dispenser.innerHTML = '';
+	dispenser.appendChild(img);
+};
+
+/* A callback function to make chocolate froyo */
+var chocolateMaker = function(e) {
+	var img = document.createElement('img');
+	img.src = 'img/chocolate.jpg';
+	dispenser.innerHTML = '';
+	dispenser.appendChild(img);
+};
+
+/* Add an event listener to the power button to bind the togglePower callback function to the click event */
+powerButton.addEventListener('click', togglePower);</code></pre>
+			</div>
+
+			<h3>Bonuses</h3>
+			<p>Do all or as many as you can.</p>
+			<ul>
+				<li>
+					<div>Clean up your code so that one function can create any flavor of froyo, depending on the button being pressed.</div>
+					<button onclick="showSolution(4)">Show/Hide Solution</button>
+					<div class="codebox" id="example4Code">
+<pre><code>/* The froyo machine is off until it's turned on. */
+var isOn = false;
+
+/* Select the power button */
+var powerButton = document.querySelector('#power img');
+
+/* Select the flavor buttons */
+var vanillaButton = document.getElementById('vanilla');
+var strawberryButton = document.getElementById('strawberry');
+var chocolateButton = document.getElementById('chocolate');
+
+/* Select the dispenser */
+var dispenser = document.getElementById('dispenser');
+
+/* A callback function to turn the froyo machine on and off */
+var togglePower = function(e) {
+	if (!isOn) {
+		isOn = true;
+		this.src = 'img/power_on.png';
+		vanillaButton.addEventListener('click', froyoMaker);
+		strawberryButton.addEventListener('click', froyoMaker);
+		chocolateButton.addEventListener('click', froyoMaker);
+	} else {
+		isOn = false;
+		this.src = 'img/power.png';
+		vanillaButton.removeEventListener('click', froyoMaker);
+		strawberryButton.removeEventListener('click', froyoMaker);
+		chocolateButton.removeEventListener('click', froyoMaker);
+	}
+}
+
+/* A callback function to make any flavor froyo */
+var froyoMaker = function(e) {
+	var flavor = this.id;
+	var img = document.createElement('img');
+	img.src = 'img/' + flavor + '.jpg';
+	dispenser.innerHTML = '';
+	dispenser.appendChild(img);
+};
+
+/* Add an event listener to the power button to bind the togglePower callback function to the click event */
+powerButton.addEventListener('click', togglePower);</code></pre>
+					</div>
+				</li>
+				<li>
+					<div>Clean up your code to use event delegation for dispensing the flavors of froyo.</div>
+					<button onclick="showSolution(5)">Show/Hide Solution</button>
+					<div class="codebox" id="example5Code">
+<pre><code>/* The froyo machine is off until it's turned on. */
+var isOn = false;
+
+/* Select the power button */
+var powerButton = document.querySelector('#power img');
+
+/* Select the machine */
+var machine = document.getElementById('machine');
+
+/* Select the dispenser */
+var dispenser = document.getElementById('dispenser');
+
+/* A callback function to turn the froyo machine on and off */
+var togglePower = function(e) {
+	if (!isOn) {
+		isOn = true;
+		this.src = 'img/power_on.png';
+		machine.addEventListener('click', froyoMaker);
+	} else {
+		isOn = false;
+		this.src = 'img/power.png';
+		machine.removeEventListener('click', froyoMaker);
+	}
+}
+
+/* A callback function to make any flavor froyo */
+var froyoMaker = function(e) {
+	var el = e.target;
+	while (el != this) {
+		if (el && el.nodeName == 'BUTTON') {
+			var flavor = el.id;
+			var img = document.createElement('img');
+			img.src = 'img/' + flavor + '.jpg';
+			dispenser.innerHTML = '';
+			dispenser.appendChild(img);
+		};
+		el = el.parentNode;
+	}
+};
+
+/* Add an event listener to the power button to bind the togglePower callback function to the click event */
+powerButton.addEventListener('click', togglePower);</code></pre>
+					</div>
+				</li>
+				<li>
+					<div>Make the froyo machine an object and make <code>isOn</code> a property of that object. Make toggling the power and dispensing the different flavors of yogurt methods of that object.</div>
+					<button onclick="showSolution(6)">Show/Hide Solution</button>
+					<div class="codebox" id="example6Code">
+<pre><code>var froyoMachine = {
+	isOn: false,
+	powerButton: document.querySelector('#power img'),
+	container: document.getElementById('machine'),
+	dispenser: document.getElementById('dispenser'),
+	togglePower: function(e) {
+		if (!this.isOn) {
+			this.isOn = true;
+			this.powerButton.src = 'img/power_on.png';
+			this.container.addEventListener('click', this.makeFroyo);
+		} else {
+			this.isOn = false;
+			this.powerButton.src = 'img/power.png';
+			this.container.removeEventListener('click', this.makeFroyo);
+		}
+	},
+	makeFroyo: function(e) {
+		var el = e.target;
+		while (el != this) {
+			if (el && el.nodeName == 'BUTTON') {
+				var flavor = el.id;
+				var img = document.createElement('img');
+				img.src = 'img/' + flavor + '.jpg';
+				froyoMachine.dispenser.innerHTML = '';
+				froyoMachine.dispenser.appendChild(img);
+			}
+			el = el.parentNode;
+		}
+	}
+};
+
+froyoMachine.powerButton.addEventListener('click', froyoMachine.togglePower.bind(froyoMachine));</code></pre>
+					</div>
+				</li>
+			</ul>
+
+			<h3>Hints</h3>
+			<ul>
+				<li>Make sure that you use your browser developer tools.</li>
+				<li>Check for errors using console.log() to figure out how far your code makes it and what the values of your variables are along the way.</li>
+			</ul>
+		</div>
+		<div id="footer">
+			<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+		</div>
+	</div>
+</body>
+</html>
