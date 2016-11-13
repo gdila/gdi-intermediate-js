@@ -203,6 +203,9 @@ powerButton.addEventListener('click', togglePower);</code></pre>
 	powerButton: document.querySelector('#power img'),
 	container: document.getElementById('machine'),
 	dispenser: document.getElementById('dispenser'),
+	init: function(){
+		this.powerButton.addEventListener('click', froyoMachine.togglePower.bind(froyoMachine));
+	},
 	togglePower: function(e) {
 		if (!this.isOn) {
 			this.isOn = true;
@@ -212,6 +215,8 @@ powerButton.addEventListener('click', togglePower);</code></pre>
 			this.isOn = false;
 			this.powerButton.src = 'img/power.png';
 			this.container.removeEventListener('click', this.makeFroyo);
+			var froyo = froyoMachine.dispenser.getElementsByTagName('img')[0];
+			froyoMachine.dispenser.removeChild(froyo);
 		}
 	},
 	makeFroyo: function(e) {
@@ -229,7 +234,7 @@ powerButton.addEventListener('click', togglePower);</code></pre>
 	}
 };
 
-froyoMachine.powerButton.addEventListener('click', froyoMachine.togglePower.bind(froyoMachine));</code></pre>
+froyoMachine.init();</code></pre>
 					</div>
 				</li>
 			</ul>
